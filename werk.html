@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Werk — Mindlockresidence</title>
+  <meta name="description" content="Werk van Mindlockresidence: muziek, film, fotografie, grafisch vormgeving, studio sessies en workshops." />
+  <meta name="theme-color" content="#080808" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="inner" data-page="werk" data-title="title.werk">
+
+  <div id="site-header"></div>
+
+  <main>
+    <section id="werk">
+      <div class="werk-header reveal">
+        <div>
+          <div class="section-tag" data-i18n="werk.tag">Selectie</div>
+          <h2 data-i18n="werk.title">Werk</h2>
+        </div>
+        <p data-i18n="werk.intro">Een greep uit recente projecten. Filter op discipline om gericht te kijken.</p>
+      </div>
+
+      <div class="filter-bar reveal" role="tablist" aria-label="Filter werk op categorie">
+        <button class="filter-btn active" data-filter="all" data-i18n="werk.f.all">Alles</button>
+        <button class="filter-btn" data-filter="muziek" data-i18n="werk.f.muziek">Muziek</button>
+        <button class="filter-btn" data-filter="film" data-i18n="werk.f.film">Film</button>
+        <button class="filter-btn" data-filter="foto" data-i18n="werk.f.foto">Fotografie</button>
+        <button class="filter-btn" data-filter="design" data-i18n="werk.f.design">Grafisch Vormgeving</button>
+        <button class="filter-btn" data-filter="studio" data-i18n="werk.f.studio">Studio Sessies</button>
+        <button class="filter-btn" data-filter="workshop" data-i18n="werk.f.workshop">Workshops</button>
+      </div>
+
+      <div class="werk-grid reveal">
+
+        <article class="work-card large" data-cat="muziek">
+          <div class="work-media" data-label="assets/...jpg"><span class="work-cat" data-i18n="werk.f.muziek">Muziek</span></div>
+          <div class="work-info"><h3 class="work-title" data-i18n="work.1.t">Fereaux — The LostBoys</h3><p class="work-meta" data-i18n="work.1.m">Album · Productie &amp; Mix</p></div>
+        </article>
+
+        <article class="work-card" data-cat="film">
+          <div class="work-media" data-label="assets/...jpg"><span class="work-cat" data-i18n="werk.f.film">Film</span></div>
+          <div class="work-info"><h3 class="work-title" data-i18n="work.2.t">Aftermovie — Amsterdam</h3><p class="work-meta" data-i18n="work.2.m">Event film · Edit &amp; Color</p></div>
+        </article>
+
+        <article class="work-card" data-cat="foto">
+          <div class="work-media" data-label="assets/...jpg"><span class="work-cat" data-i18n="werk.f.foto">Fotografie</span></div>
+          <div class="work-info"><h3 class="work-title" data-i18n="work.3.t">Portretreeks — Nachtlicht</h3><p class="work-meta" data-i18n="work.3.m">Artiestportret · Studio</p></div>
+        </article>
+
+        <article class="work-card" data-cat="design">
+          <div class="work-media" data-label="assets/...jpg"><span class="work-cat" data-i18n="werk.f.design">Grafisch Vormgeving</span></div>
+          <div class="work-info"><h3 class="work-title" data-i18n="work.4.t">Cover Art Reeks</h3><p class="work-meta" data-i18n="work.4.m">Single artwork · Branding</p></div>
+        </article>
+
+        <article class="work-card" data-cat="film">
+          <div class="work-media" data-label="assets/...jpg"><span class="work-cat" data-i18n="werk.f.film">Film</span></div>
+          <div class="work-info"><h3 class="work-title" data-i18n="work.5.t">Videoclip — Rood Bloed</h3><p class="work-meta" data-i18n="work.5.m">Muziekvideo · Regie</p></div>
+        </article>
+
+        <article class="work-card" data-cat="studio">
+          <div class="work-media" data-label="assets/...jpg"><span class="work-cat" data-i18n="werk.f.studio">Studio Sessies</span></div>
+          <div class="work-info"><h3 class="work-title" data-i18n="work.6.t">Live Room Sessie</h3><p class="work-meta" data-i18n="work.6.m">Recording · Mix &amp; Master</p></div>
+        </article>
+
+        <article class="work-card" data-cat="workshop">
+          <div class="work-media" data-label="assets/...jpg"><span class="work-cat" data-i18n="werk.f.workshop">Workshops</span></div>
+          <div class="work-info"><h3 class="work-title" data-i18n="work.7.t">Beatmaking 101</h3><p class="work-meta" data-i18n="work.7.m">Workshopreeks · Educatie</p></div>
+        </article>
+
+        <article class="work-card" data-cat="design">
+          <div class="work-media" data-label="assets/...jpg"><span class="work-cat" data-i18n="werk.f.design">Grafisch Vormgeving</span></div>
+          <div class="work-info"><h3 class="work-title" data-i18n="work.8.t">Identiteit — KREAM</h3><p class="work-meta" data-i18n="work.8.m">Logo &amp; huisstijl</p></div>
+        </article>
+
+      </div>
+      <p class="werk-empty" hidden data-i18n="werk.empty">Nog geen werk in deze categorie.</p>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="i18n.js"></script>
+  <script src="layout.js"></script>
+</body>
+</html>

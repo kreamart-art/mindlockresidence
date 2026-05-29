@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Mindlockresidence</title>
+  <meta name="description" content="Start een project met Mindlockresidence. Muziek, film, fotografie of een hele identiteit — vertel ons je idee." />
+  <meta name="theme-color" content="#080808" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="inner" data-page="contact" data-title="title.contact">
+
+  <div id="site-header"></div>
+
+  <main>
+    <section id="contact">
+      <div class="contact-inner">
+        <div class="contact-info reveal">
+          <div class="section-tag" data-i18n="contact.tag">Contact</div>
+          <h2 data-i18n-html="contact.title">START EEN<br><em>PROJECT</em></h2>
+          <p data-i18n="contact.intro">Klaar om iets te maken? Vertel kort wat je in gedachten hebt.</p>
+          <div class="contact-details">
+            <a href="mailto:Mindlockresidence@gmail.com" class="contact-detail">
+              <div class="contact-detail-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg></div>
+              <div class="contact-detail-text"><strong data-i18n="contact.email.l">E-mail</strong>Mindlockresidence@gmail.com</div>
+            </a>
+            <a href="https://instagram.com/mindlockresidence" target="_blank" rel="noopener" class="contact-detail">
+              <div class="contact-detail-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+              <div class="contact-detail-text"><strong data-i18n="contact.ig.l">Instagram</strong>@mindlockresidence</div>
+            </a>
+            <div class="contact-detail">
+              <div class="contact-detail-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg></div>
+              <div class="contact-detail-text"><strong data-i18n="contact.loc.l">Locatie</strong><span data-i18n="contact.loc.v">Amsterdam — beschikbaar landelijk</span></div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" id="contact-form" novalidate>
+          <div class="form-title" data-i18n="form.title">Vertel over je project</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-name" data-i18n="form.name">Naam</label>
+              <input id="f-name" type="text" data-i18n-ph="form.name.ph" placeholder="Jouw naam" required />
+            </div>
+            <div class="form-group">
+              <label for="f-email" data-i18n="form.email">E-mail</label>
+              <input id="f-email" type="email" data-i18n-ph="form.email.ph" placeholder="jouw@email.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="f-type" data-i18n="form.type">Type project</label>
+            <select id="f-type">
+              <option value="" disabled selected data-i18n="form.type.ph">Selecteer een optie</option>
+              <option data-i18n="form.type.1">Muziek &amp; Productie</option>
+              <option data-i18n="form.type.2">Film &amp; Video</option>
+              <option data-i18n="form.type.3">Fotografie</option>
+              <option data-i18n="form.type.4">Grafisch Vormgeving</option>
+              <option data-i18n="form.type.5">Artiest-ontwikkeling</option>
+              <option data-i18n="form.type.6">Anders</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f-msg" data-i18n="form.msg">Bericht</label>
+            <textarea id="f-msg" data-i18n-ph="form.msg.ph" placeholder="Vertel kort over je idee, budget en planning..." required></textarea>
+          </div>
+          <button type="submit" class="form-submit" data-i18n="form.submit">Verstuur aanvraag →</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="i18n.js"></script>
+  <script src="layout.js"></script>
+</body>
+</html>

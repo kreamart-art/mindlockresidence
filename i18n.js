@@ -1,0 +1,486 @@
+/* ============================================================
+   Mindlockresidence — i18n (NL / EN)
+   Vertaalbare teksten staan in de HTML met data-i18n="key".
+   - data-i18n        → textContent
+   - data-i18n-html   → innerHTML (voor <br>, <strong>, <em>, <span>)
+   - data-i18n-ph     → placeholder
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var T = {
+    nl: {
+      /* nav */
+      'nav.diensten': 'Diensten',
+      'nav.werk': 'Werk',
+      'nav.muziek': 'Muziek',
+      'nav.over': 'Over',
+      'nav.contact': 'Contact',
+      'nav.boek': 'Boek nu',
+
+      /* hero */
+      'hero.ontdek': 'Ontdek talent',
+      'hero.demo': 'Klik hier voor een demo',
+      'hero.scroll': 'Scroll down',
+      'hero.creators': 'CREATORS',
+      'hero.creators_ph': "assets/creators.png — upload je team-foto's",
+
+      /* ecosystem */
+      'eco.tag': 'One ecosystem · Endless possibilities',
+      'eco.title': 'HET <span>MLR</span> ECOSYSTEEM',
+      'eco.c1.t': 'Muziek<br>Produktie',
+      'eco.c1.s': 'Creatieve geluidsstudio & mastering',
+      'eco.c2.t': 'Film &amp;<br>Fotografie',
+      'eco.c2.s': 'High-end visuele content',
+      'eco.c3.t': 'Grafisch<br>Vormgeving',
+      'eco.c3.s': 'Merkidentiteit & visuele styling',
+      'eco.c4.t': 'Artiest-<br>Ontwikkeling',
+      'eco.c4.s': 'Strategische carriereplanning',
+      'eco.explore': 'Explore',
+      'eco.spot.tag': 'Spotlight',
+      'eco.spot.title': 'Artiest in<br>de spotlight',
+      'eco.spot.1': 'Maatwerk trajecten',
+      'eco.spot.2': 'Toegang tot studio',
+      'eco.spot.3': 'Gecureerde projecten',
+
+      /* diensten page */
+      'serv.tag': 'Wat we doen',
+      'serv.title': 'Diensten',
+      'serv.intro': 'Eén studio, meerdere werelden — allemaal verbonden door één visie. Van eerste idee tot oplevering werk je met dezelfde maker.',
+      'serv.1.t': 'Muziek & Productie',
+      'serv.1.d': 'Van eerste topline tot mastering. We schrijven samen rond jouw sound en boodschap — net zo lang aan de vocals tot het exact klopt zoals jij het in je hoofd hebt.',
+      'serv.1.l': 'Start een track',
+      'serv.2.t': 'Film & Video',
+      'serv.2.d': "Muziekvideo's, aftermovies en merkfilms. Cinematisch verteld, tot in de afwerking — en als het moet zoeken we de gekste hoeken van de wereld op voor de juiste shot.",
+      'serv.2.l': 'Plan een shoot',
+      'serv.3.t': 'Fotografie',
+      'serv.3.d': 'Portret, cover art en campagnebeeld dat blijft hangen. Sterke beeldtaal die past bij wie je bent en het verhaal dat je wilt vertellen.',
+      'serv.3.l': 'Boek een shoot',
+      'serv.4.t': 'Grafisch Vormgeving',
+      'serv.4.d': "Logo's, huisstijl, cover art en social. Eén consistente identiteit over al je kanalen — muziek, film, foto, branding, beeld en boodschap als geheel.",
+      'serv.4.l': 'Vraag een ontwerp',
+      'serv.5.t': 'Studio Sessies',
+      'serv.5.d': 'Werk samen in de studio van concept tot afgewerkte track. Recording, mixing en mastering inbegrepen — met begeleiding op elk niveau.',
+      'serv.5.l': 'Plan een sessie',
+      'serv.6.t': 'Workshops',
+      'serv.6.d': 'Beatmaking, songwriting en creatieve productie — voor scholen, groepen en beginnende makers. Kennis en fantasie, doorgegeven aan de volgende generatie.',
+      'serv.6.l': 'Boek een workshop',
+
+      /* werk page */
+      'werk.tag': 'Selectie',
+      'werk.title': 'Werk',
+      'werk.intro': 'Een greep uit recente projecten. Filter op discipline om gericht te kijken.',
+      'werk.f.all': 'Alles',
+      'werk.f.muziek': 'Muziek',
+      'werk.f.film': 'Film',
+      'werk.f.foto': 'Fotografie',
+      'werk.f.design': 'Grafisch Vormgeving',
+      'werk.f.studio': 'Studio Sessies',
+      'werk.f.workshop': 'Workshops',
+      'werk.empty': 'Nog geen werk in deze categorie.',
+      'work.1.t': 'Fereaux — The LostBoys',
+      'work.1.m': 'Album · Productie & Mix',
+      'work.2.t': 'Aftermovie — Amsterdam',
+      'work.2.m': 'Event film · Edit & Color',
+      'work.3.t': 'Portretreeks — Nachtlicht',
+      'work.3.m': 'Artiestportret · Studio',
+      'work.4.t': 'Cover Art Reeks',
+      'work.4.m': 'Single artwork · Branding',
+      'work.5.t': 'Videoclip — Rood Bloed',
+      'work.5.m': 'Muziekvideo · Regie',
+      'work.6.t': 'Live Room Sessie',
+      'work.6.m': 'Recording · Mix & Master',
+      'work.7.t': 'Beatmaking 101',
+      'work.7.m': 'Workshopreeks · Educatie',
+      'work.8.t': 'Identiteit — KREAM',
+      'work.8.m': 'Logo & huisstijl',
+
+      /* muziek page */
+      'muz.tag': 'Discografie',
+      'muz.title': 'Muziek',
+      'muz.intro': 'Releases uit de Mindlock Residence-catalogus. Beluister op je favoriete platform of duik in het volledige archief op Bandcamp.',
+      'muz.r1.t': 'Kross & Fereaux — The LostBoys',
+      'muz.r1.m': 'Album · 8 tracks',
+      'muz.r2.t': 'Fero Tisesty — No Worries',
+      'muz.r2.m': 'Single · Prod. Mindlock Beats',
+      'muz.r3.t': 'End of the World Mixtape',
+      'muz.r3.m': 'Mixtape · Various',
+      'muz.r4.t': 'MozRoc, Fero Tisesty & Kaye Tunez — On The Grind',
+      'muz.r4.m': 'EP · Collab',
+
+      /* shop (op muziek page) */
+      'shop.tag': 'Shop',
+      'shop.title': 'Shop',
+      'shop.intro': 'Beats, releases en merch — direct uit de residence.',
+      'shop.1.n': 'Mindlock Beat Pack Vol. 1',
+      'shop.1.s': 'Digitale download · 15 beats',
+      'shop.2.n': 'The LostBoys — Vinyl',
+      'shop.2.s': 'Gelimiteerde persing',
+      'shop.3.n': 'Mindlock Hoodie — Zwart',
+      'shop.3.s': 'Heavyweight · embroidered',
+      'shop.4.n': 'Mindlock Tee — Rood Logo',
+      'shop.4.s': '100% katoen',
+      'shop.badge.new': 'Nieuw',
+      'shop.badge.limited': 'Limited',
+      'shop.cta': 'Bekijk de volledige shop',
+
+      /* about page */
+      'about.tag': 'Over Mindlock',
+      'about.title': 'VISIE BOVEN<br><em>MIDDELEN</em>',
+      'about.imgph': 'Foto van de studio / maker',
+      'about.p1': 'Mindlockresidence is ontstaan vanuit de drang om te creëren zonder de middelen ervoor te hebben.',
+      'about.p2': 'Een visie en een grote fantasie hebben is één ding, maar het ook daadwerkelijk tot leven brengen wanneer je geen middelen hebt om dat te realiseren is een grote uitdaging.',
+      'about.fire': 'Hier begon het vuur in mij te branden.',
+      'about.p3': 'Los van een grote fantasie had ik de wilskracht en het geduld om een omweg te maken naar de gewenste bestemming — iets wat iemand met de juiste middelen zou behalen door simpelweg recht over te steken.',
+      'about.mind': 'Wanneer ik iets zie in mijn mind, wil ik niet stoppen tot ik het ook echt heb behaald.',
+      'about.commit.tag': 'Toewijding',
+      'about.commit.title': 'HOE VER WE <em>GAAN</em>',
+      'about.commit.1.if': 'Wil je een specifieke sound of genre, een bepaalde boodschap overbrengen en kijken hoe dat matcht met jouw image en persoonlijkheid?',
+      'about.commit.1.then': 'Dan schrijven wij alles samen uit, vanaf het begin tot het eind.',
+      'about.commit.2.if': 'Wil je 10 keer heen en weer over een vocal die niet klinkt zoals je het in je hoofd hoort?',
+      'about.commit.2.then': 'Dan gaan wij voor de 11e keer samen er weer doorheen.',
+      'about.commit.3.if': 'Duurt het even voordat we de juiste locatie en attributen vinden voor je foto- of videoshoot of artwork?',
+      'about.commit.3.then': 'Dan kijk ik met je in de gekste hoeken van de wereld om je visie en wens tot leven te brengen.',
+      'about.commit.4.if': 'Moet ik een hele nacht doorhalen om een stuk uit het beeld te masken zodat ik 5 seconden heb waarvan ik de achtergrond los kan bewerken?',
+      'about.commit.4.then': 'Dan gaan we dat doen.',
+      'about.closing.title': 'Alles is <em>mogelijk</em>.',
+      'about.closing.sub': 'Muziek · Film · Foto · Branding · Image · Boodschap',
+      'proces.tag': 'Hoe we werken',
+      'proces.title': 'VAN IDEE TOT <em>EINDRESULTAAT</em>',
+      'proces.1.t': 'Idee',
+      'proces.1.d': 'Jij komt met een idee, gevoel of richting. We luisteren, stellen vragen en vergroten het samen.',
+      'proces.2.t': 'Concept',
+      'proces.2.d': 'We vertalen het naar een concreet concept: sound, beeld, identiteit en boodschap als één geheel.',
+      'proces.3.t': 'Creatie',
+      'proces.3.d': 'Opnemen, filmen, fotograferen, ontwerpen. We schaven net zo lang tot het exact klopt zoals jij het voor je ziet.',
+      'proces.4.t': 'Oplevering',
+      'proces.4.d': 'Afgewerkt, gemixt, gemasterd en klaar voor release — met alle bestanden die je nodig hebt.',
+
+      /* contact page */
+      'contact.tag': 'Contact',
+      'contact.title': 'START EEN<br><em>PROJECT</em>',
+      'contact.intro': 'Klaar om iets te maken? Vertel kort wat je in gedachten hebt — muziek, film, foto of een hele identiteit — en we kijken samen hoe groot we het kunnen maken.',
+      'contact.email.l': 'E-mail',
+      'contact.ig.l': 'Instagram',
+      'contact.loc.l': 'Locatie',
+      'contact.loc.v': 'Amsterdam — beschikbaar landelijk',
+      'form.title': 'Vertel over je project',
+      'form.name': 'Naam',
+      'form.name.ph': 'Jouw naam',
+      'form.email': 'E-mail',
+      'form.email.ph': 'jouw@email.com',
+      'form.type': 'Type project',
+      'form.type.ph': 'Selecteer een optie',
+      'form.type.1': 'Muziek & Productie',
+      'form.type.2': 'Film & Video',
+      'form.type.3': 'Fotografie',
+      'form.type.4': 'Grafisch Vormgeving',
+      'form.type.5': 'Artiest-ontwikkeling',
+      'form.type.6': 'Anders',
+      'form.msg': 'Bericht',
+      'form.msg.ph': 'Vertel kort over je idee, budget en planning...',
+      'form.submit': 'Verstuur aanvraag →',
+      'form.sent': 'Verzonden! ✓',
+
+      /* footer */
+      'footer.tagline': 'Creatieve studio uit Amsterdam.',
+      'footer.col1.h': 'Studio',
+      'footer.col1.1': 'Diensten',
+      'footer.col1.2': 'Werk',
+      'footer.col1.3': 'Over',
+      'footer.col2.h': 'Info',
+      'footer.col2.1': 'Contact',
+      'footer.col2.2': 'SSF..',
+      'footer.col2.3': 'FAQ',
+      'footer.col3.h': 'Socials',
+      'footer.cta.title': 'Built for Sound',
+      'footer.cta.sub': 'Bouw jouw visie. Join het team.',
+      'footer.cta.more': 'Leer meer',
+      'footer.cta.join': 'Word een MLR creator',
+      'footer.bottom': '© 2026 Mindlock Residence — Amsterdam.',
+      'footer.privacy': 'Privacy',
+      'footer.terms': 'Voorwaarden',
+      'footer.credit': 'Made by Kream Art',
+
+      'home.over.tag': 'Over ons',
+      'home.over.title': 'MEER DAN EEN STUDIO',
+      'home.over.text': 'Mindlockresidence is ontstaan vanuit de drang om te creëren zonder de middelen ervoor te hebben. Eén plek waar muziek, film, fotografie en vormgeving samenkomen tot één wereld.',
+      'home.over.btn': 'Lees ons verhaal',
+      'home.werk.tag': 'Selectie',
+      'home.werk.title': 'RECENT WERK',
+      'home.werk.btn': 'Bekijk al het werk',
+      'home.muz.tag': 'Discografie',
+      'home.muz.title': 'LAATSTE RELEASES',
+      'home.muz.btn': 'Naar de muziek',
+      'home.cta.title': 'Klaar om iets te maken?',
+      'home.cta.text': 'Vertel ons je idee — wij vergroten het samen met jou tot een afgewerkt geheel.',
+      'home.cta.btn': 'Start een project',
+
+      /* page titles (document.title) */
+      'title.home': 'Mindlockresidence — De residentie voor creatieve energie',
+      'title.diensten': 'Diensten — Mindlockresidence',
+      'title.werk': 'Werk — Mindlockresidence',
+      'title.muziek': 'Muziek — Mindlockresidence',
+      'title.over': 'Over — Mindlockresidence',
+      'title.contact': 'Contact — Mindlockresidence'
+    },
+
+    en: {
+      /* nav */
+      'nav.diensten': 'Services',
+      'nav.werk': 'Work',
+      'nav.muziek': 'Music',
+      'nav.over': 'About',
+      'nav.contact': 'Contact',
+      'nav.boek': 'Book now',
+
+      /* hero */
+      'hero.ontdek': 'Discover talent',
+      'hero.demo': 'Watch a demo',
+      'hero.scroll': 'Scroll down',
+      'hero.creators': 'CREATORS',
+      'hero.creators_ph': 'assets/creators.png — upload your team photos',
+
+      /* ecosystem */
+      'eco.tag': 'One ecosystem · Endless possibilities',
+      'eco.title': 'THE <span>MLR</span> ECOSYSTEM',
+      'eco.c1.t': 'Music<br>Production',
+      'eco.c1.s': 'Creative sound studio & mastering',
+      'eco.c2.t': 'Film &amp;<br>Photography',
+      'eco.c2.s': 'High-end visual content',
+      'eco.c3.t': 'Graphic<br>Design',
+      'eco.c3.s': 'Brand identity & visual styling',
+      'eco.c4.t': 'Artist<br>Development',
+      'eco.c4.s': 'Strategic career planning',
+      'eco.explore': 'Explore',
+      'eco.spot.tag': 'Spotlight',
+      'eco.spot.title': 'Artist in<br>the spotlight',
+      'eco.spot.1': 'Tailor-made trajectories',
+      'eco.spot.2': 'Studio access',
+      'eco.spot.3': 'Curated projects',
+
+      /* diensten page */
+      'serv.tag': 'What we do',
+      'serv.title': 'Services',
+      'serv.intro': 'One studio, many worlds — all connected by a single vision. From first idea to delivery you work with the same maker.',
+      'serv.1.t': 'Music & Production',
+      'serv.1.d': 'From first topline to mastering. We write together around your sound and message — refining the vocals until they match exactly what you hear in your head.',
+      'serv.1.l': 'Start a track',
+      'serv.2.t': 'Film & Video',
+      'serv.2.d': "Music videos, aftermovies and brand films. Told cinematically, down to the finish — and if needed we'll search the wildest corners of the world for the right shot.",
+      'serv.2.l': 'Plan a shoot',
+      'serv.3.t': 'Photography',
+      'serv.3.d': 'Portrait, cover art and campaign imagery that sticks. Strong visuals that fit who you are and the story you want to tell.',
+      'serv.3.l': 'Book a shoot',
+      'serv.4.t': 'Graphic Design',
+      'serv.4.d': 'Logos, brand identity, cover art and social. One consistent identity across all your channels — music, film, photo, branding, image and message as a whole.',
+      'serv.4.l': 'Request a design',
+      'serv.5.t': 'Studio Sessions',
+      'serv.5.d': 'Work together in the studio from concept to finished track. Recording, mixing and mastering included — with guidance at every level.',
+      'serv.5.l': 'Plan a session',
+      'serv.6.t': 'Workshops',
+      'serv.6.d': 'Beatmaking, songwriting and creative production — for schools, groups and emerging makers. Knowledge and imagination, passed to the next generation.',
+      'serv.6.l': 'Book a workshop',
+
+      /* werk page */
+      'werk.tag': 'Selection',
+      'werk.title': 'Work',
+      'werk.intro': 'A selection of recent projects. Filter by discipline to focus.',
+      'werk.f.all': 'All',
+      'werk.f.muziek': 'Music',
+      'werk.f.film': 'Film',
+      'werk.f.foto': 'Photography',
+      'werk.f.design': 'Graphic Design',
+      'werk.f.studio': 'Studio Sessions',
+      'werk.f.workshop': 'Workshops',
+      'werk.empty': 'No work in this category yet.',
+      'work.1.t': 'Fereaux — The LostBoys',
+      'work.1.m': 'Album · Production & Mix',
+      'work.2.t': 'Aftermovie — Amsterdam',
+      'work.2.m': 'Event film · Edit & Color',
+      'work.3.t': 'Portrait series — Nightlight',
+      'work.3.m': 'Artist portrait · Studio',
+      'work.4.t': 'Cover Art Series',
+      'work.4.m': 'Single artwork · Branding',
+      'work.5.t': 'Music video — Rood Bloed',
+      'work.5.m': 'Music video · Direction',
+      'work.6.t': 'Live Room Session',
+      'work.6.m': 'Recording · Mix & Master',
+      'work.7.t': 'Beatmaking 101',
+      'work.7.m': 'Workshop series · Education',
+      'work.8.t': 'Identity — KREAM',
+      'work.8.m': 'Logo & brand identity',
+
+      /* muziek page */
+      'muz.tag': 'Discography',
+      'muz.title': 'Music',
+      'muz.intro': 'Releases from the Mindlock Residence catalogue. Listen on your favourite platform or dive into the full archive on Bandcamp.',
+      'muz.r1.t': 'Kross & Fereaux — The LostBoys',
+      'muz.r1.m': 'Album · 8 tracks',
+      'muz.r2.t': 'Fero Tisesty — No Worries',
+      'muz.r2.m': 'Single · Prod. Mindlock Beats',
+      'muz.r3.t': 'End of the World Mixtape',
+      'muz.r3.m': 'Mixtape · Various',
+      'muz.r4.t': 'MozRoc, Fero Tisesty & Kaye Tunez — On The Grind',
+      'muz.r4.m': 'EP · Collab',
+
+      /* shop */
+      'shop.tag': 'Shop',
+      'shop.title': 'Shop',
+      'shop.intro': 'Beats, releases and merch — straight from the residence.',
+      'shop.1.n': 'Mindlock Beat Pack Vol. 1',
+      'shop.1.s': 'Digital download · 15 beats',
+      'shop.2.n': 'The LostBoys — Vinyl',
+      'shop.2.s': 'Limited pressing',
+      'shop.3.n': 'Mindlock Hoodie — Black',
+      'shop.3.s': 'Heavyweight · embroidered',
+      'shop.4.n': 'Mindlock Tee — Red Logo',
+      'shop.4.s': '100% cotton',
+      'shop.badge.new': 'New',
+      'shop.badge.limited': 'Limited',
+      'shop.cta': 'View the full shop',
+
+      /* about page */
+      'about.tag': 'About Mindlock',
+      'about.title': 'VISION OVER<br><em>MEANS</em>',
+      'about.imgph': 'Photo of the studio / maker',
+      'about.p1': 'Mindlockresidence was born from the urge to create without having the means to do so.',
+      'about.p2': 'Having a vision and a big imagination is one thing, but actually bringing it to life when you have no means to realise it is a real challenge.',
+      'about.fire': 'This is where the fire in me started to burn.',
+      'about.p3': 'Beyond a big imagination, I had the willpower and the patience to take a detour to the destination I wanted — something a person with the right means would reach by simply crossing straight over.',
+      'about.mind': "When I see something in my mind, I won't stop until I have truly achieved it.",
+      'about.commit.tag': 'Dedication',
+      'about.commit.title': 'HOW FAR WE <em>GO</em>',
+      'about.commit.1.if': 'Want a specific sound or genre, to convey a certain message and see how it matches your image and personality?',
+      'about.commit.1.then': 'Then we write it all out together, from beginning to end.',
+      'about.commit.2.if': "Want to go back and forth 10 times on a vocal that doesn't sound like you hear it in your head?",
+      'about.commit.2.then': "Then we'll go through it together an 11th time.",
+      'about.commit.3.if': 'Does it take a while to find the right location and props for your photo or video shoot or artwork?',
+      'about.commit.3.then': 'Then I will look into the wildest corners of the world with you to bring your vision and wish to life.',
+      'about.commit.4.if': 'Do I have to pull an all-nighter masking out part of an image just to get 5 seconds where I can edit the background separately?',
+      'about.commit.4.then': "Then that's what we'll do.",
+      'about.closing.title': 'Anything is <em>possible</em>.',
+      'about.closing.sub': 'Music · Film · Photo · Branding · Image · Message',
+      'proces.tag': 'How we work',
+      'proces.title': 'FROM IDEA TO <em>RESULT</em>',
+      'proces.1.t': 'Idea',
+      'proces.1.d': 'You bring an idea, feeling or direction. We listen, ask questions and amplify it together.',
+      'proces.2.t': 'Concept',
+      'proces.2.d': 'We translate it into a concrete concept: sound, image, identity and message as one whole.',
+      'proces.3.t': 'Creation',
+      'proces.3.d': 'Recording, filming, shooting, designing. We refine until it is exactly as you envision it.',
+      'proces.4.t': 'Delivery',
+      'proces.4.d': 'Finished, mixed, mastered and ready for release — with all the files you need.',
+
+      /* contact page */
+      'contact.tag': 'Contact',
+      'contact.title': 'START A<br><em>PROJECT</em>',
+      'contact.intro': "Ready to make something? Tell us briefly what you have in mind — music, film, photo or a whole identity — and we'll figure out together how big we can make it.",
+      'contact.email.l': 'Email',
+      'contact.ig.l': 'Instagram',
+      'contact.loc.l': 'Location',
+      'contact.loc.v': 'Amsterdam — available nationwide',
+      'form.title': 'Tell us about your project',
+      'form.name': 'Name',
+      'form.name.ph': 'Your name',
+      'form.email': 'Email',
+      'form.email.ph': 'you@email.com',
+      'form.type': 'Project type',
+      'form.type.ph': 'Select an option',
+      'form.type.1': 'Music & Production',
+      'form.type.2': 'Film & Video',
+      'form.type.3': 'Photography',
+      'form.type.4': 'Graphic Design',
+      'form.type.5': 'Artist development',
+      'form.type.6': 'Other',
+      'form.msg': 'Message',
+      'form.msg.ph': 'Briefly describe your idea, budget and timeline...',
+      'form.submit': 'Send request →',
+      'form.sent': 'Sent! ✓',
+
+      /* footer */
+      'footer.tagline': 'Creative studio from Amsterdam.',
+      'footer.col1.h': 'Studio',
+      'footer.col1.1': 'Services',
+      'footer.col1.2': 'Work',
+      'footer.col1.3': 'About',
+      'footer.col2.h': 'Info',
+      'footer.col2.1': 'Contact',
+      'footer.col2.2': 'SSF..',
+      'footer.col2.3': 'FAQ',
+      'footer.col3.h': 'Socials',
+      'footer.cta.title': 'Built for Sound',
+      'footer.cta.sub': 'Build your vision. Join the team.',
+      'footer.cta.more': 'Learn more',
+      'footer.cta.join': 'Become an MLR creator',
+      'footer.bottom': '© 2026 Mindlock Residence — Amsterdam.',
+      'footer.privacy': 'Privacy',
+      'footer.terms': 'Terms',
+      'footer.credit': 'Made by Kream Art',
+
+      'home.over.tag': 'About us',
+      'home.over.title': 'MORE THAN A STUDIO',
+      'home.over.text': 'Mindlockresidence was born from the urge to create without having the means. One place where music, film, photography and design come together into a single world.',
+      'home.over.btn': 'Read our story',
+      'home.werk.tag': 'Selection',
+      'home.werk.title': 'RECENT WORK',
+      'home.werk.btn': 'View all work',
+      'home.muz.tag': 'Discography',
+      'home.muz.title': 'LATEST RELEASES',
+      'home.muz.btn': 'Go to the music',
+      'home.cta.title': 'Ready to make something?',
+      'home.cta.text': "Tell us your idea — we'll amplify it together into a finished whole.",
+      'home.cta.btn': 'Start a project',
+
+      /* page titles */
+      'title.home': 'Mindlockresidence — The residence for creative energy',
+      'title.diensten': 'Services — Mindlockresidence',
+      'title.werk': 'Work — Mindlockresidence',
+      'title.muziek': 'Music — Mindlockresidence',
+      'title.over': 'About — Mindlockresidence',
+      'title.contact': 'Contact — Mindlockresidence'
+    }
+  };
+
+  var LANGS = ['nl', 'en'];
+  var STORAGE = 'mlr-lang';
+
+  function getLang() {
+    try {
+      var saved = localStorage.getItem(STORAGE);
+      if (saved && LANGS.indexOf(saved) !== -1) return saved;
+    } catch (e) {}
+    return 'nl';
+  }
+
+  function apply(lang) {
+    if (LANGS.indexOf(lang) === -1) lang = 'nl';
+    var dict = T[lang];
+    document.documentElement.lang = lang;
+    document.documentElement.setAttribute('data-lang', lang);
+
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (dict[k] != null) el.textContent = dict[k];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n-html');
+      if (dict[k] != null) el.innerHTML = dict[k];
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n-ph');
+      if (dict[k] != null) el.setAttribute('placeholder', dict[k]);
+    });
+
+    var titleKey = document.body.getAttribute('data-title');
+    if (titleKey && dict[titleKey]) document.title = dict[titleKey];
+
+    document.querySelectorAll('[data-lang-btn]').forEach(function (btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
+    });
+
+    try { localStorage.setItem(STORAGE, lang); } catch (e) {}
+  }
+
+  window.MLRI18N = { apply: apply, getLang: getLang, langs: LANGS };
+})();

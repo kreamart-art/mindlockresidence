@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mindlock Residence — Muziek · Film · Fotografie · Grafisch Vormgeving</title>
+  <meta name="description" content="Mindlock Residence is een creatieve studio uit Amsterdam. Muziek, film, fotografie en grafisch vormgeving — van idee tot afgewerkt eindresultaat. Kom jij met een idee, dan vergroot ik het samen met jou." />
+  <meta name="theme-color" content="#080808" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mindlock Residence — Creatieve studio uit Amsterdam" />
+  <meta property="og:description" content="Muziek · Film · Fotografie · Grafisch Vormgeving. Van idee tot eindresultaat." />
+  <meta property="og:locale" content="nl_NL" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div id="cursor" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- SCROLL PROGRESS -->
+  <div id="progress" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo" aria-label="Mindlock Residence home">
+      MIND<span>LOCK</span> <i>RESIDENCE</i>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#diensten">Diensten</a></li>
+      <li><a href="#werk">Werk</a></li>
+      <li><a href="#muziek">Muziek</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#over">Over</a></li>
+      <li><a href="#contact" class="nav-cta">Start een project</a></li>
+    </ul>
+    <button id="menu-toggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu" aria-hidden="true">
+    <a href="#diensten">Diensten</a>
+    <a href="#werk">Werk</a>
+    <a href="#muziek">Muziek</a>
+    <a href="#shop">Shop</a>
+    <a href="#over">Over</a>
+    <a href="#contact" class="nav-cta">Start een project</a>
+  </div>
+
+  <!-- HERO -->
+  <header id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Creatieve studio · Amsterdam</div>
+      <h1>
+        <span class="line"><span>MINDLOCK</span></span>
+        <span class="line"><span><em>RESIDENCE</em></span></span>
+      </h1>
+      <p class="hero-rotator">
+        <span class="static">Wij maken</span>
+        <span class="rotate" id="rotator" aria-live="polite">muziek</span>
+      </p>
+      <p class="hero-sub">
+        Muziek, film, fotografie &amp; grafisch vormgeving onder één dak.
+        Kom jij met een idee, dan vergroot ik het samen met jou — van eerste schets tot afgewerkt eindresultaat.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Start een project
+        </a>
+        <a href="#werk" class="btn btn-ghost">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          Bekijk het werk
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Jaar ervaring</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-num">4</div><div class="stat-label">Disciplines</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Visie</div></div>
+    </div>
+
+    <a href="#diensten" class="hero-scroll">
+      <span class="line"></span>
+      Scroll
+    </a>
+  </header>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">Muziek<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Film<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Fotografie<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Grafisch Vormgeving<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Studio Sessies<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Workshops<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Muziek<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Film<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Fotografie<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Grafisch Vormgeving<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Studio Sessies<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Workshops<span class="marquee-dot"></span></span>
+    </div>
+  </div>
+
+  <!-- DIENSTEN -->
+  <section id="diensten">
+    <div class="services-header reveal">
+      <div>
+        <div class="section-tag">Wat we doen</div>
+        <h2>DIENSTEN</h2>
+      </div>
+      <p>Eén studio, meerdere werelden — allemaal verbonden door één visie. Van eerste idee tot oplevering werk je met dezelfde maker.</p>
+    </div>
+    <div class="services-grid reveal">
+
+      <article class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13M9 18c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3zm12-3c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"/></svg>
+        </div>
+        <h3 class="service-title">Muziek &amp; Productie</h3>
+        <p class="service-desc">Van eerste topline tot mastering. We schrijven samen rond jouw sound en boodschap — net zo lang aan de vocals tot het exact klopt zoals jij het in je hoofd hebt.</p>
+        <a href="#contact" class="service-link">Start een track <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
+        </div>
+        <h3 class="service-title">Film &amp; Video</h3>
+        <p class="service-desc">Muziekvideo's, aftermovies en merkfilms. Cinematisch verteld, tot in de afwerking — en als het moet zoeken we de gekste hoeken van de wereld op voor de juiste shot.</p>
+        <a href="#contact" class="service-link">Plan een shoot <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"/><path d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z"/></svg>
+        </div>
+        <h3 class="service-title">Fotografie</h3>
+        <p class="service-desc">Portret, cover art en campagnebeeld dat blijft hangen. Sterke beeldtaal die past bij wie je bent en het verhaal dat je wilt vertellen.</p>
+        <a href="#contact" class="service-link">Boek een shoot <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"/></svg>
+        </div>
+        <h3 class="service-title">Grafisch Vormgeving</h3>
+        <p class="service-desc">Logo's, huisstijl, cover art en social. Eén consistente identiteit over al je kanalen — muziek, film, foto, branding, beeld en boodschap als geheel.</p>
+        <a href="#contact" class="service-link">Vraag een ontwerp <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-num">05</div>
+        <div class="service-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg>
+        </div>
+        <h3 class="service-title">Studio Sessies</h3>
+        <p class="service-desc">Werk samen in de studio van concept tot afgewerkte track. Recording, mixing en mastering inbegrepen — met begeleiding op elk niveau.</p>
+        <a href="#contact" class="service-link">Plan een sessie <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-num">06</div>
+        <div class="service-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/></svg>
+        </div>
+        <h3 class="service-title">Workshops</h3>
+        <p class="service-desc">Beatmaking, songwriting en creatieve productie — voor scholen, groepen en beginnende makers. Kennis en fantasie, doorgegeven aan de volgende generatie.</p>
+        <a href="#contact" class="service-link">Boek een workshop <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- WERK / PORTFOLIO -->
+  <section id="werk">
+    <div class="werk-header reveal">
+      <div>
+        <div class="section-tag">Selectie</div>
+        <h2>WERK</h2>
+      </div>
+      <p>Een greep uit recente projecten. Filter op discipline om gericht te kijken.</p>
+    </div>
+
+    <div class="filter-bar reveal" role="tablist" aria-label="Filter werk op categorie">
+      <button class="filter-btn active" data-filter="all">Alles</button>
+      <button class="filter-btn" data-filter="muziek">Muziek</button>
+      <button class="filter-btn" data-filter="film">Film</button>
+      <button class="filter-btn" data-filter="foto">Fotografie</button>
+      <button class="filter-btn" data-filter="design">Grafisch Vormgeving</button>
+      <button class="filter-btn" data-filter="studio">Studio Sessies</button>
+      <button class="filter-btn" data-filter="workshop">Workshops</button>
+    </div>
+
+    <div class="werk-grid reveal">
+
+      <article class="work-card large" data-cat="muziek">
+        <div class="work-media" data-label="Vervang door beeld/clip">
+          <span class="work-cat">Muziek</span>
+        </div>
+        <div class="work-info">
+          <h3 class="work-title">Fereaux — The LostBoys</h3>
+          <p class="work-meta">Album · Productie &amp; Mix</p>
+        </div>
+      </article>
+
+      <article class="work-card" data-cat="film">
+        <div class="work-media" data-label="Vervang door beeld/clip">
+          <span class="work-cat">Film</span>
+        </div>
+        <div class="work-info">
+          <h3 class="work-title">Aftermovie — Amsterdam</h3>
+          <p class="work-meta">Event film · Edit &amp; Color</p>
+        </div>
+      </article>
+
+      <article class="work-card" data-cat="foto">
+        <div class="work-media" data-label="Vervang door beeld">
+          <span class="work-cat">Fotografie</span>
+        </div>
+        <div class="work-info">
+          <h3 class="work-title">Portretreeks — Nachtlicht</h3>
+          <p class="work-meta">Artiestportret · Studio</p>
+        </div>
+      </article>
+
+      <article class="work-card" data-cat="design">
+        <div class="work-media" data-label="Vervang door beeld">
+          <span class="work-cat">Grafisch Vormgeving</span>
+        </div>
+        <div class="work-info">
+          <h3 class="work-title">Cover Art Reeks</h3>
+          <p class="work-meta">Single artwork · Branding</p>
+        </div>
+      </article>
+
+      <article class="work-card" data-cat="film">
+        <div class="work-media" data-label="Vervang door beeld/clip">
+          <span class="work-cat">Film</span>
+        </div>
+        <div class="work-info">
+          <h3 class="work-title">Videoclip — Rood Bloed</h3>
+          <p class="work-meta">Muziekvideo · Regie</p>
+        </div>
+      </article>
+
+      <article class="work-card" data-cat="studio">
+        <div class="work-media" data-label="Vervang door beeld">
+          <span class="work-cat">Studio Sessies</span>
+        </div>
+        <div class="work-info">
+          <h3 class="work-title">Live Room Sessie</h3>
+          <p class="work-meta">Recording · Mix &amp; Master</p>
+        </div>
+      </article>
+
+      <article class="work-card" data-cat="workshop">
+        <div class="work-media" data-label="Vervang door beeld">
+          <span class="work-cat">Workshops</span>
+        </div>
+        <div class="work-info">
+          <h3 class="work-title">Beatmaking 101</h3>
+          <p class="work-meta">Workshopreeks · Educatie</p>
+        </div>
+      </article>
+
+      <article class="work-card" data-cat="design">
+        <div class="work-media" data-label="Vervang door beeld">
+          <span class="work-cat">Grafisch Vormgeving</span>
+        </div>
+        <div class="work-info">
+          <h3 class="work-title">Identiteit — KREAM</h3>
+          <p class="work-meta">Logo &amp; huisstijl</p>
+        </div>
+      </article>
+
+    </div>
+    <p class="werk-empty" hidden>Nog geen werk in deze categorie.</p>
+  </section>
+
+  <!-- MUZIEK -->
+  <section id="muziek">
+    <div class="muziek-inner">
+      <div class="muziek-intro reveal">
+        <div class="section-tag">Discografie</div>
+        <h2>MUZIEK</h2>
+        <p>Releases uit de Mindlock Residence-catalogus. Beluister op je favoriete platform of duik in het volledige archief op Bandcamp.</p>
+        <div class="muziek-platforms">
+          <a href="https://mindlockresidence.bandcamp.com" target="_blank" rel="noopener" class="platform-btn">Bandcamp</a>
+          <a href="#" class="platform-btn">Spotify</a>
+          <a href="#" class="platform-btn">Apple Music</a>
+          <a href="#" class="platform-btn">YouTube</a>
+        </div>
+      </div>
+
+      <div class="release-list reveal">
+        <a href="https://mindlockresidence.bandcamp.com" target="_blank" rel="noopener" class="release-row">
+          <div class="release-art" data-label="Cover"></div>
+          <div class="release-info">
+            <div class="release-title">Kross &amp; Fereaux — The LostBoys</div>
+            <div class="release-meta">Album · 8 tracks</div>
+          </div>
+          <div class="release-year">2014</div>
+          <svg class="release-arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <a href="https://mindlockresidence.bandcamp.com" target="_blank" rel="noopener" class="release-row">
+          <div class="release-art" data-label="Cover"></div>
+          <div class="release-info">
+            <div class="release-title">Fero Tisesty — No Worries</div>
+            <div class="release-meta">Single · Prod. Mindlock Beats</div>
+          </div>
+          <div class="release-year">2012</div>
+          <svg class="release-arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <a href="https://mindlockresidence.bandcamp.com" target="_blank" rel="noopener" class="release-row">
+          <div class="release-art" data-label="Cover"></div>
+          <div class="release-info">
+            <div class="release-title">End of the World Mixtape</div>
+            <div class="release-meta">Mixtape · Various</div>
+          </div>
+          <div class="release-year">2012</div>
+          <svg class="release-arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <a href="https://mindlockresidence.bandcamp.com" target="_blank" rel="noopener" class="release-row">
+          <div class="release-art" data-label="Cover"></div>
+          <div class="release-info">
+            <div class="release-title">MozRoc, Fero Tisesty &amp; Kaye Tunez — On The Grind</div>
+            <div class="release-meta">EP · Collab</div>
+          </div>
+          <div class="release-year">2012</div>
+          <svg class="release-arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP -->
+  <section id="shop">
+    <div class="shop-header reveal">
+      <div>
+        <div class="section-tag">Shop</div>
+        <h2>SHOP</h2>
+      </div>
+      <p>Beats, releases en merch — direct uit de residence.</p>
+    </div>
+    <div class="shop-grid reveal">
+
+      <article class="shop-card">
+        <div class="shop-image"><span class="shop-badge">Nieuw</span><div class="shop-image-inner" data-label="Productbeeld"></div></div>
+        <div class="shop-info">
+          <div class="shop-name">Mindlock Beat Pack Vol. 1</div>
+          <div class="shop-sub">Digitale download · 15 beats</div>
+          <div class="shop-price">€29</div>
+        </div>
+      </article>
+
+      <article class="shop-card">
+        <div class="shop-image"><span class="shop-badge">Limited</span><div class="shop-image-inner" data-label="Productbeeld"></div></div>
+        <div class="shop-info">
+          <div class="shop-name">The LostBoys — Vinyl</div>
+          <div class="shop-sub">Gelimiteerde persing</div>
+          <div class="shop-price">€25</div>
+        </div>
+      </article>
+
+      <article class="shop-card">
+        <div class="shop-image"><div class="shop-image-inner" data-label="Productbeeld"></div></div>
+        <div class="shop-info">
+          <div class="shop-name">Mindlock Hoodie — Zwart</div>
+          <div class="shop-sub">Heavyweight · embroidered</div>
+          <div class="shop-price">€55</div>
+        </div>
+      </article>
+
+      <article class="shop-card">
+        <div class="shop-image"><div class="shop-image-inner" data-label="Productbeeld"></div></div>
+        <div class="shop-info">
+          <div class="shop-name">Mindlock Tee — Rood Logo</div>
+          <div class="shop-sub">100% katoen</div>
+          <div class="shop-price">€30</div>
+        </div>
+      </article>
+
+    </div>
+    <div class="shop-cta reveal">
+      <a href="#" class="btn btn-primary">Bekijk de volledige shop <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+    </div>
+  </section>
+
+  <!-- PROCES -->
+  <section id="proces">
+    <div class="proces-header reveal">
+      <div class="section-tag">Hoe we werken</div>
+      <h2>VAN IDEE TOT <em>EINDRESULTAAT</em></h2>
+    </div>
+    <div class="proces-grid reveal">
+      <div class="proces-step">
+        <div class="proces-num">01</div>
+        <h3>Idee</h3>
+        <p>Jij komt met een idee, gevoel of richting. We luisteren, stellen vragen en vergroten het samen.</p>
+      </div>
+      <div class="proces-step">
+        <div class="proces-num">02</div>
+        <h3>Concept</h3>
+        <p>We vertalen het naar een concreet concept: sound, beeld, identiteit en boodschap als één geheel.</p>
+      </div>
+      <div class="proces-step">
+        <div class="proces-num">03</div>
+        <h3>Creatie</h3>
+        <p>Opnemen, filmen, fotograferen, ontwerpen. We schaven net zo lang tot het exact klopt zoals jij het voor je ziet.</p>
+      </div>
+      <div class="proces-step">
+        <div class="proces-num">04</div>
+        <h3>Oplevering</h3>
+        <p>Afgewerkt, gemixt, gemasterd en klaar voor release — met alle bestanden die je nodig hebt.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVER -->
+  <section id="over">
+    <div class="about-visual reveal">
+      <div class="about-accent"></div>
+      <div class="about-image-frame" data-label="Foto van de studio / maker"></div>
+      <div class="about-accent-2"><span>MR</span></div>
+    </div>
+    <div class="about-text reveal">
+      <div class="section-tag">Over Mindlock</div>
+      <h2>VISIE BOVEN<br/><em>MIDDELEN</em></h2>
+      <p>
+        Mindlock Residence is opgebouwd vanuit beperkte middelen, maar <strong>onbeperkte visie</strong>.
+        Eén studio in Amsterdam waar muziek, film, fotografie en grafisch vormgeving samenkomen —
+        zodat alles wat je maakt uit één consistente wereld komt.
+      </p>
+      <p>
+        We schrijven muziek van begin tot eind rond jouw sound en boodschap, blijven aan een vocal werken
+        tot die exact klopt, zoeken de gekste hoeken op voor de juiste shot en maskeren elk detail in de edit.
+        <strong>Muziek, film, foto, branding, beeld en boodschap — als geheel.</strong>
+      </p>
+      <blockquote class="about-quote">
+        "Kom jij met een idee, dan vergroot ik het samen met jou door middel van mijn kennis en fantasie."
+      </blockquote>
+      <div class="about-skills">
+        <span class="skill-tag">Productie</span>
+        <span class="skill-tag">Songwriting</span>
+        <span class="skill-tag">Mix &amp; Master</span>
+        <span class="skill-tag">Regie</span>
+        <span class="skill-tag">Edit &amp; Color</span>
+        <span class="skill-tag">Fotografie</span>
+        <span class="skill-tag">Branding</span>
+        <span class="skill-tag">Art Direction</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="contact-info reveal">
+        <div class="section-tag">Contact</div>
+        <h2>START EEN<br/><em>PROJECT</em></h2>
+        <p>Klaar om iets te maken? Vertel kort wat je in gedachten hebt — muziek, film, foto of een hele identiteit — en we kijken samen hoe groot we het kunnen maken.</p>
+        <div class="contact-details">
+          <a href="mailto:Mindlockresidence@gmail.com" class="contact-detail">
+            <div class="contact-detail-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg></div>
+            <div class="contact-detail-text"><strong>E-mail</strong>Mindlockresidence@gmail.com</div>
+          </a>
+          <a href="https://instagram.com/mindlockresidence" target="_blank" rel="noopener" class="contact-detail">
+            <div class="contact-detail-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+            <div class="contact-detail-text"><strong>Instagram</strong>@mindlockresidence</div>
+          </a>
+          <div class="contact-detail">
+            <div class="contact-detail-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg></div>
+            <div class="contact-detail-text"><strong>Locatie</strong>Amsterdam — beschikbaar landelijk</div>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form reveal" id="contact-form" novalidate>
+        <div class="form-title">Vertel over je project</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-name">Naam</label>
+            <input id="f-name" type="text" placeholder="Jouw naam" required />
+          </div>
+          <div class="form-group">
+            <label for="f-email">E-mail</label>
+            <input id="f-email" type="email" placeholder="jouw@email.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="f-type">Type project</label>
+          <select id="f-type">
+            <option value="" disabled selected>Selecteer een optie</option>
+            <option>Muziek &amp; Productie</option>
+            <option>Film &amp; Video</option>
+            <option>Fotografie</option>
+            <option>Grafisch Vormgeving</option>
+            <option>Studio Sessie</option>
+            <option>Workshop</option>
+            <option>Anders</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="f-msg">Bericht</label>
+          <textarea id="f-msg" placeholder="Vertel kort over je idee, budget en planning..." required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Verstuur aanvraag →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-newsletter reveal">
+      <div>
+        <h3>Blijf in de loop</h3>
+        <p>Nieuwe releases, drops en werk — af en toe, nooit spam.</p>
+      </div>
+      <form class="newsletter-form" id="newsletter-form" novalidate>
+        <input type="email" placeholder="jouw@email.com" aria-label="E-mailadres" required />
+        <button type="submit">Inschrijven</button>
+      </form>
+    </div>
+
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="logo">MIND<span>LOCK</span> <i>RESIDENCE</i></span>
+        <p>Creatieve studio uit Amsterdam. Muziek, film, fotografie &amp; grafisch vormgeving — onder één dak.</p>
+        <div class="socials">
+          <a href="https://instagram.com/mindlockresidence" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="https://mindlockresidence.bandcamp.com" target="_blank" rel="noopener" class="social-btn" aria-label="Bandcamp"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M0 18.75l7.437-13.5H24l-7.437 13.5H0z"/></svg></a>
+          <a href="#" class="social-btn" aria-label="YouTube"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+          <a href="#" class="social-btn" aria-label="Spotify"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 13s1.5-1 4-1 4 1 4 1M7 10s2-1.5 5-1.5 5 1.5 5 1.5M9 16s1-.7 3-.7 3 .7 3 .7"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Studio</h4>
+        <ul>
+          <li><a href="#diensten">Diensten</a></li>
+          <li><a href="#werk">Werk</a></li>
+          <li><a href="#proces">Proces</a></li>
+          <li><a href="#over">Over Mindlock</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Muziek</h4>
+        <ul>
+          <li><a href="#muziek">Releases</a></li>
+          <li><a href="https://mindlockresidence.bandcamp.com" target="_blank" rel="noopener">Bandcamp</a></li>
+          <li><a href="#shop">Beat Packs</a></li>
+          <li><a href="#shop">Shop</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:Mindlockresidence@gmail.com">E-mail</a></li>
+          <li><a href="https://instagram.com/mindlockresidence" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="#contact">Start een project</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mindlock Residence — Amsterdam. Alle rechten voorbehouden.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy</a>
+        <a href="#">Voorwaarden</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
