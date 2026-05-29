@@ -354,6 +354,9 @@ h2 em { font-style: normal; color: var(--red); }
 /* work-card met echte foto */
 .work-media.has-photo { background-size: cover; background-position: center; }
 .work-media.has-photo::after { content: none; }
+/* release-cover met echte afbeelding */
+.release-art.has-photo { background-size: cover; background-position: center; }
+.release-art.has-photo::after { content: none; }
 .about-accent { position: absolute; top: -20px; right: -20px; width: 120px; height: 120px; border: 1px solid var(--red-dim); border-radius: 4px; z-index: 0; }
 .about-accent-2 { position: absolute; bottom: -20px; left: -20px; width: 64px; height: 64px; background: var(--red); border-radius: 2px; z-index: 3; display: flex; align-items: center; justify-content: center; }
 .about-accent-2 span { font-family: 'Bebas Neue'; font-size: 1.2rem; letter-spacing: .08em; color: #fff; }
