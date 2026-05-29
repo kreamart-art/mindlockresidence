@@ -109,7 +109,7 @@
           '<div class="footer-legal">' +
             '<a href="#" data-i18n="footer.privacy">Privacy</a>' +
             '<a href="#" data-i18n="footer.terms">Voorwaarden</a>' +
-            '<a href="https://www.artnomad.nl" target="_blank" rel="noopener" class="footer-credit" data-i18n="footer.credit">Made by Kream Art</a>' +
+            '<a href="https://www.artnomad.nl" target="_blank" rel="noopener" class="footer-credit" aria-label="Made by Kream Art — Artnomad"><img src="assets/ka-logo.png" alt="Kream Art" class="footer-credit-logo"></a>' +
           '</div>' +
         '</div>' +
       '</footer>';

@@ -735,6 +735,9 @@ body[data-page="over"] #over { align-items: start; }
 .home-cta .home-wrap { max-width: 680px; }
 .home-cta h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.6rem,7vw,5rem); letter-spacing: .03em; line-height: .95; margin-bottom: 1rem; }
 .home-cta p { font-family: 'Inter', sans-serif; color: var(--light); font-weight: 300; line-height: 1.7; margin-bottom: 2rem; }
-.footer-credit:hover { color: var(--red); }
+.footer-credit { display: inline-flex; align-items: center; }
+.footer-credit-logo { height: 22px; width: auto; filter: brightness(0) invert(1); opacity: .6; transition: filter .3s ease, opacity .3s ease; }
+.footer-credit:hover .footer-credit-logo { filter: none; opacity: 1; }
+.footer-legal { align-items: center; }
 @media (max-width: 900px) { .home-werk-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .home-werk-grid { grid-template-columns: 1fr; } }
