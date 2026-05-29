@@ -116,6 +116,15 @@
   }
 
   /* ---- INJECT ---- */
+  // favicon (relative paths so it works under the /mindlockresidence/ Pages subpath)
+  if (!document.querySelector('link[rel="icon"]')) {
+    document.head.insertAdjacentHTML('beforeend',
+      '<link rel="icon" href="favicon.ico" sizes="any">' +
+      '<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">' +
+      '<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">' +
+      '<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">');
+  }
+
   // cursor + progress
   var fragHead = document.createElement('div');
   fragHead.innerHTML =
