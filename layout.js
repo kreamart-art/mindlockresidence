@@ -150,6 +150,48 @@
       '<a href="https://mindlockresidence.bandcamp.com" target="_blank" rel="noopener" aria-label="Bandcamp">' + BC + '</a>';
   }
 
+  /* ---- VIDEO LIGHTBOX (YouTube) ---- */
+  (function () {
+    var lb = document.createElement('div');
+    lb.id = 'video-lightbox';
+    lb.setAttribute('aria-hidden', 'true');
+    lb.innerHTML =
+      '<div class="vlb-backdrop"></div>' +
+      '<div class="vlb-dialog" role="dialog" aria-modal="true" aria-label="Video">' +
+        '<button class="vlb-close" aria-label="Sluiten">&times;</button>' +
+        '<div class="vlb-frame"></div>' +
+      '</div>';
+    document.body.appendChild(lb);
+    var frame = lb.querySelector('.vlb-frame');
+
+    function open(id) {
+      if (!id) return;
+      frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
+        '?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="YouTube video" ' +
+        'frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
+        'allowfullscreen></iframe>';
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('vlb-lock');
+    }
+    function close() {
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('vlb-lock');
+      frame.innerHTML = ''; // stop playback
+    }
+    lb.querySelector('.vlb-close').addEventListener('click', close);
+    lb.querySelector('.vlb-backdrop').addEventListener('click', close);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+
+    document.addEventListener('click', function (e) {
+      var card = e.target.closest && e.target.closest('[data-yt]');
+      if (!card) return;
+      e.preventDefault();
+      open(card.getAttribute('data-yt'));
+    });
+  })();
+
   /* ---- LANGUAGE ---- */
   if (window.MLRI18N) {
     window.MLRI18N.apply(window.MLRI18N.getLang());
