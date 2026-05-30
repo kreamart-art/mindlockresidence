@@ -190,6 +190,13 @@
       e.preventDefault();
       open(card.getAttribute('data-yt'));
     });
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      var card = e.target.closest && e.target.closest('[data-yt]');
+      if (!card) return;
+      e.preventDefault();
+      open(card.getAttribute('data-yt'));
+    });
   })();
 
   /* ---- LANGUAGE ---- */

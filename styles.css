@@ -357,6 +357,14 @@ h2 em { font-style: normal; color: var(--red); }
 /* release-cover met echte afbeelding */
 .release-art.has-photo { background-size: cover; background-position: center; }
 .release-art.has-photo::after { content: none; }
+/* work-card met klikbare video */
+.work-card.has-video { cursor: pointer; }
+.work-card.has-video .work-media::before { opacity: 1; }
+.work-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); z-index: 3; width: 56px; height: 56px; border-radius: 50%; background: rgba(225,6,0,.92); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 28px var(--red-glow); transition: transform .25s ease, background .25s; }
+.work-card.has-video:hover .work-play { transform: translate(-50%,-50%) scale(1.12); background: var(--red-hot); }
+.work-play svg { width: 20px; height: 20px; color: #fff; margin-left: 3px; }
+.work-card.large .work-play { width: 72px; height: 72px; }
+.work-card.large .work-play svg { width: 26px; height: 26px; }
 .about-accent { position: absolute; top: -20px; right: -20px; width: 120px; height: 120px; border: 1px solid var(--red-dim); border-radius: 4px; z-index: 0; }
 .about-accent-2 { position: absolute; bottom: -20px; left: -20px; width: 64px; height: 64px; background: var(--red); border-radius: 2px; z-index: 3; display: flex; align-items: center; justify-content: center; }
 .about-accent-2 span { font-family: 'Bebas Neue'; font-size: 1.2rem; letter-spacing: .08em; color: #fff; }
