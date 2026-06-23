@@ -28,10 +28,16 @@
 
   function navList(mobile) {
     return links.map(function (l) {
-      var active = l.page === page ? ' class="active"' : '';
-      var item = '<a href="' + l.href + '"' + active + ' data-i18n="' + l.key + '">' + l.key + '</a>';
+      var item = '<a href="' + l.href + '" data-nav="' + l.page + '" data-i18n="' + l.key + '">' + l.key + '</a>';
       return mobile ? item : '<li>' + item + '</li>';
     }).join('');
+  }
+
+  function setActiveNav() {
+    var p = document.body.getAttribute('data-page') || '';
+    document.querySelectorAll('[data-nav]').forEach(function (a) {
+      a.classList.toggle('active', a.getAttribute('data-nav') === p);
+    });
   }
 
   function langToggle() {
@@ -256,9 +262,8 @@
     });
   })();
 
-  /* ---- LANGUAGE ---- */
+  /* ---- LANGUAGE (globale toggle, één keer) ---- */
   if (window.MLRI18N) {
-    window.MLRI18N.apply(window.MLRI18N.getLang());
     document.addEventListener('click', function (e) {
       var btn = e.target.closest && e.target.closest('[data-lang-btn]');
       if (!btn) return;
@@ -266,19 +271,15 @@
     });
   }
 
-  /* ---- INTERACTIONS ---- */
+  /* ---- CURSOR (globaal, één keer) ---- */
   var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var hoverSel = 'a, button, .service-card, .work-card, .shop-card, .release-row, .eco-card, input, textarea, select, .skill-tag';
   if (fine) {
     var cursor = document.getElementById('cursor');
     var ring = document.getElementById('cursor-ring');
     document.addEventListener('mousemove', function (e) {
       cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
       ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px';
-    });
-    var hoverSel = 'a, button, .service-card, .work-card, .shop-card, .release-row, .eco-card, input, textarea, select, .skill-tag';
-    document.querySelectorAll(hoverSel).forEach(function (el) {
-      el.addEventListener('mouseenter', function () { document.body.classList.add('hovered'); });
-      el.addEventListener('mouseleave', function () { document.body.classList.remove('hovered'); });
     });
   }
 
@@ -305,72 +306,178 @@
   document.querySelectorAll('#mobile-menu a').forEach(function (a) { a.addEventListener('click', closeMenu); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
 
-  // reveal on scroll
-  var reveals = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); }
-      });
-    }, { threshold: 0.12 });
-    reveals.forEach(function (el) { io.observe(el); });
-  } else {
-    reveals.forEach(function (el) { el.classList.add('visible'); });
-  }
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // portfolio filter
-  var filterBtns = document.querySelectorAll('.filter-btn');
-  var cards = document.querySelectorAll('.work-card');
-  var emptyMsg = document.querySelector('.werk-empty');
-  filterBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      filterBtns.forEach(function (b) { b.classList.remove('active'); });
-      btn.classList.add('active');
-      var f = btn.getAttribute('data-filter');
-      var shown = 0;
-      cards.forEach(function (card) {
-        var match = f === 'all' || card.getAttribute('data-cat') === f;
-        card.style.display = match ? '' : 'none';
-        if (match) shown++;
-      });
-      if (emptyMsg) emptyMsg.hidden = shown !== 0;
-    });
-  });
+  /* ---- PER-PAGINA INIT (opnieuw uitvoerbaar na een SPA-swap) ---- */
+  function initPage() {
+    setActiveNav();
 
-  // forms (front-end only)
-  function wireForm(form, btnSel) {
-    if (!form) return;
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var btn = form.querySelector(btnSel);
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-      var lang = (window.MLRI18N && window.MLRI18N.getLang()) || 'nl';
-      var sent = lang === 'en' ? 'Sent! ✓' : 'Verzonden! ✓';
-      var original = btn.textContent;
-      btn.textContent = sent; btn.style.background = '#1a6e1a';
-      form.reset();
-      setTimeout(function () { btn.textContent = original; btn.style.background = ''; }, 3200);
+    // hero social-iconen (alleen home)
+    var heroSocials = document.querySelector('.hero-socials');
+    if (heroSocials && !heroSocials.children.length) {
+      heroSocials.innerHTML =
+        '<a href="https://instagram.com/mindlockresidence" target="_blank" rel="noopener" aria-label="Instagram">' + IG + '</a>' +
+        '<a href="#" aria-label="YouTube">' + YT + '</a>' +
+        '<a href="#" aria-label="TikTok">' + TT + '</a>' +
+        '<a href="https://mindlockresidence.bandcamp.com" target="_blank" rel="noopener" aria-label="Bandcamp">' + BC + '</a>';
+    }
+
+    // reveal on scroll: alles wat al in beeld is meteen tonen, de rest observeren
+    var reveals = document.querySelectorAll('.reveal:not(.visible)');
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    function inView(el) { var r = el.getBoundingClientRect(); return r.top < vh * 0.92 && r.bottom > 0; }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); }
+        });
+      }, { threshold: 0.12 });
+      reveals.forEach(function (el) {
+        if (inView(el)) { el.classList.add('visible'); }
+        else { io.observe(el); }
+      });
+    } else {
+      reveals.forEach(function (el) { el.classList.add('visible'); });
+    }
+
+    // portfolio filter
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    var cards = document.querySelectorAll('.work-card');
+    var emptyMsg = document.querySelector('.werk-empty');
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        filterBtns.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var f = btn.getAttribute('data-filter');
+        var shown = 0;
+        cards.forEach(function (card) {
+          var match = f === 'all' || card.getAttribute('data-cat') === f;
+          card.style.display = match ? '' : 'none';
+          if (match) shown++;
+        });
+        if (emptyMsg) emptyMsg.hidden = shown !== 0;
+      });
     });
+
+    // formulier (front-end only)
+    var form = document.getElementById('contact-form');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = form.querySelector('.form-submit');
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+        var lang = (window.MLRI18N && window.MLRI18N.getLang()) || 'nl';
+        var original = btn.textContent;
+        btn.textContent = lang === 'en' ? 'Sent! ✓' : 'Verzonden! ✓';
+        btn.style.background = '#1a6e1a';
+        form.reset();
+        setTimeout(function () { btn.textContent = original; btn.style.background = ''; }, 3200);
+      });
+    }
+
+    // hover-cursor koppelen aan nieuwe elementen
+    if (fine) {
+      document.querySelectorAll(hoverSel).forEach(function (el) {
+        if (el.__mlrHover) return; el.__mlrHover = 1;
+        el.addEventListener('mouseenter', function () { document.body.classList.add('hovered'); });
+        el.addEventListener('mouseleave', function () { document.body.classList.remove('hovered'); });
+      });
+    }
+
+    // vertaal de nieuw ingevoegde content
+    if (window.MLRI18N) window.MLRI18N.apply(window.MLRI18N.getLang());
+
+    onScroll();
   }
-  wireForm(document.getElementById('contact-form'), '.form-submit');
 
   /* ---- INTRO / ENTRANCE ---- */
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function revealSite() { document.body.classList.remove('loading'); document.body.classList.add('loaded'); }
-  if (isHome) {
-    var introSeen = false;
-    try { introSeen = sessionStorage.getItem('mlr-intro-seen') === '1'; } catch (e) {}
-    if (introSeen) {
-      // Intro al gezien deze sessie → direct naar de site, geen animatie
+  function runIntro() {
+    if (document.body.classList.contains('home')) {
+      var introSeen = false;
+      try { introSeen = sessionStorage.getItem('mlr-intro-seen') === '1'; } catch (e) {}
       var introEl = document.getElementById('intro');
-      if (introEl) introEl.style.display = 'none';
-      revealSite();
+      if (introSeen) {
+        if (introEl) introEl.style.display = 'none';
+        revealSite();
+      } else {
+        try { sessionStorage.setItem('mlr-intro-seen', '1'); } catch (e) {}
+        setTimeout(revealSite, reduce ? 200 : 2400);
+        setTimeout(revealSite, 4000);
+      }
     } else {
-      try { sessionStorage.setItem('mlr-intro-seen', '1'); } catch (e) {}
-      setTimeout(revealSite, reduce ? 200 : 2400);
-      setTimeout(revealSite, 4000); // veiligheidsnet
+      requestAnimationFrame(revealSite);
     }
-  } else {
-    requestAnimationFrame(revealSite);
   }
+
+  /* ---- SPA-ROUTER: wissel alleen <main>, zodat nav/footer/beat blijven leven ---- */
+  (function () {
+    var localPages = {};
+    links.forEach(function (l) { localPages[l.href] = l.page; });
+    localPages['index.html'] = 'home';
+    localPages[''] = 'home';
+
+    function samePath(href) {
+      // alleen interne .html-links binnen dezelfde map
+      try {
+        var u = new URL(href, location.href);
+        if (u.origin !== location.origin) return null;
+        var file = u.pathname.split('/').pop() || 'index.html';
+        if (file in localPages) return { file: file, hash: u.hash };
+        return null;
+      } catch (e) { return null; }
+    }
+
+    function swap(file, hash, push) {
+      var url = file + (hash || '');
+      fetch(file, { credentials: 'same-origin' }).then(function (r) { return r.text(); }).then(function (html) {
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        var newMain = doc.querySelector('main');
+        var curMain = document.querySelector('main');
+        if (!newMain || !curMain) { location.href = url; return; }
+
+        // body-attributen overnemen (data-page, data-title, class home/inner)
+        document.body.setAttribute('data-page', doc.body.getAttribute('data-page') || '');
+        document.body.setAttribute('data-title', doc.body.getAttribute('data-title') || '');
+        document.body.classList.toggle('home', doc.body.classList.contains('home'));
+        document.body.classList.toggle('inner', doc.body.classList.contains('inner'));
+        // intro nooit opnieuw tijdens SPA-navigatie
+        try { sessionStorage.setItem('mlr-intro-seen', '1'); } catch (e) {}
+        var introEl = document.getElementById('intro');
+        if (introEl) introEl.style.display = 'none';
+
+        curMain.innerHTML = newMain.innerHTML;
+
+        if (push) history.pushState({ mlr: 1 }, '', url);
+        if (hash) { var t = document.querySelector(hash); if (t) t.scrollIntoView(); }
+        else window.scrollTo(0, 0);
+
+        document.body.classList.add('loaded');
+        document.body.classList.remove('loading');
+        initPage();
+      }).catch(function () { location.href = url; });
+    }
+
+    document.addEventListener('click', function (e) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!a) return;
+      if (a.target === '_blank' || a.hasAttribute('download')) return;
+      if (a.getAttribute('href').charAt(0) === '#') return; // pure anchor: laat browser doen
+      var m = samePath(a.getAttribute('href'));
+      if (!m) return; // externe of niet-pagina link: normaal gedrag
+      e.preventDefault();
+      closeMenu();
+      swap(m.file, m.hash, true);
+    });
+
+    window.addEventListener('popstate', function () {
+      var m = samePath(location.pathname + location.hash);
+      if (m) swap(m.file, m.hash, false);
+    });
+  })();
+
+  // eerste lading
+  initPage();
+  runIntro();
 })();
