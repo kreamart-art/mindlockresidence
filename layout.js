@@ -150,6 +150,49 @@
       '<a href="https://mindlockresidence.bandcamp.com" target="_blank" rel="noopener" aria-label="Bandcamp">' + BC + '</a>';
   }
 
+  /* ---- BEAT-SPELER (achtergrondmuziek, autostart met fallback) ---- */
+  (function () {
+    var bar = document.createElement('button');
+    bar.id = 'beat-player';
+    bar.setAttribute('aria-label', 'Speel/pauzeer beat');
+    bar.innerHTML =
+      '<span class="beat-ic beat-ic-play"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>' +
+      '<span class="beat-ic beat-ic-pause"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></span>' +
+      '<span class="beat-eq"><i></i><i></i><i></i><i></i></span>' +
+      '<span class="beat-label">Beat</span>';
+    var audio = new Audio('assets/beat-loop.mp3');
+    audio.loop = true;
+    audio.preload = 'auto';
+    audio.volume = 0.55;
+
+    function setPlaying(on) { bar.classList.toggle('playing', on); }
+    audio.addEventListener('play', function () { setPlaying(true); });
+    audio.addEventListener('pause', function () { setPlaying(false); });
+
+    bar.addEventListener('click', function () {
+      if (audio.paused) { audio.play().catch(function(){}); }
+      else { audio.pause(); }
+    });
+
+    function append() {
+      document.body.appendChild(bar);
+      // Probeer autostart; browsers blokkeren dit vaak tot de eerste klik/tik.
+      audio.play().then(function () {
+        setPlaying(true);
+      }).catch(function () {
+        setPlaying(false);
+        var kick = function () {
+          audio.play().then(function(){ setPlaying(true); }).catch(function(){});
+          window.removeEventListener('pointerdown', kick);
+          window.removeEventListener('keydown', kick);
+        };
+        window.addEventListener('pointerdown', kick, { once: true });
+        window.addEventListener('keydown', kick, { once: true });
+      });
+    }
+    if (document.body) append(); else document.addEventListener('DOMContentLoaded', append);
+  })();
+
   /* ---- VIDEO LIGHTBOX (YouTube) ---- */
   (function () {
     var lb = document.createElement('div');
