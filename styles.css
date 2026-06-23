@@ -544,7 +544,9 @@ nav .nav-links a.active::after { transform: scaleX(1); }
 .eco-card { position: relative; min-height: 340px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.4rem; isolation: isolate; transition: transform .3s, border-color .3s, box-shadow .3s; }
 @media (hover: hover) and (pointer: fine) { .eco-card { cursor: none; } }
 .eco-card::before { content: ''; position: absolute; inset: 0; z-index: -2;
-  background: var(--card-img, linear-gradient(160deg, #1b1b1e, #0c0c0e)) center/cover no-repeat, linear-gradient(160deg, #1b1b1e, #0c0c0e); }
+  background-color: #0c0c0e;
+  background-image: var(--card-img, linear-gradient(160deg, #1b1b1e, #0c0c0e));
+  background-size: cover; background-position: center; background-repeat: no-repeat; }
 .eco-card::after { content: ''; position: absolute; inset: 0; z-index: -1;
   background: linear-gradient(180deg, rgba(8,8,8,.2) 0%, rgba(8,8,8,.55) 45%, rgba(8,8,8,.94) 100%); }
 .eco-card:hover { transform: translateY(-5px); border-color: var(--red-dim); }
