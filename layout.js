@@ -22,6 +22,7 @@
     { key: 'nav.diensten', href: 'diensten.html', page: 'diensten' },
     { key: 'nav.werk', href: 'werk.html', page: 'werk' },
     { key: 'nav.muziek', href: 'muziek.html', page: 'muziek' },
+    { key: 'nav.shop', href: 'shop.html', page: 'shop' },
     { key: 'nav.over', href: 'about.html', page: 'over' },
     { key: 'nav.contact', href: 'contact.html', page: 'contact' }
   ];
@@ -387,6 +388,9 @@
 
     // dynamisch werk uit het dashboard inladen (Werk-pagina)
     loadDynamicWork();
+
+    // shop-init opnieuw draaien na een SPA-swap
+    if (window.MLRShop && typeof window.MLRShop.init === 'function') window.MLRShop.init();
 
     // vertaal de nieuw ingevoegde content
     if (window.MLRI18N) window.MLRI18N.apply(window.MLRI18N.getLang());

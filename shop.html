@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop — Mindlockresidence</title>
+  <meta name="description" content="Beats, releases en merch, direct uit de Mindlock Residence." />
+  <meta name="theme-color" content="#080808" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=20" />
+</head>
+<body class="inner" data-page="shop" data-title="title.shop">
+
+  <div id="site-header"></div>
+
+  <main>
+    <section id="shop">
+      <div class="shop-header reveal">
+        <div>
+          <div class="section-tag" data-i18n="shop.tag">Shop</div>
+          <h2 data-i18n="shop.title">Shop</h2>
+        </div>
+        <p data-i18n="shop.intro">Beats, releases en merch, direct uit de residence.</p>
+      </div>
+
+      <div class="shop-grid reveal" id="shop-grid">
+        <p class="shop-loading" data-i18n="shop.loading">Producten laden...</p>
+      </div>
+      <p class="shop-empty" id="shop-empty" hidden data-i18n="shop.empty">De shop wordt binnenkort gevuld.</p>
+    </section>
+  </main>
+
+  <!-- Winkelwagen-lade -->
+  <button id="cart-fab" aria-label="Winkelwagen">
+    <svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-.534 1.59-1.65 1.318-2.706L18 6.75H5.106M7.5 14.25 5.106 6.75M7.5 14.25 6 18.75m0 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm12 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
+    <span class="cart-count" id="cart-count">0</span>
+  </button>
+
+  <div id="cart-drawer" aria-hidden="true">
+    <div class="cart-backdrop"></div>
+    <aside class="cart-panel" role="dialog" aria-modal="true" aria-label="Winkelwagen">
+      <div class="cart-top">
+        <h3 data-i18n="cart.title">Winkelwagen</h3>
+        <button class="cart-close" aria-label="Sluiten">&times;</button>
+      </div>
+      <div class="cart-items" id="cart-items"></div>
+      <div class="cart-foot">
+        <div class="cart-total"><span data-i18n="cart.total">Totaal</span> <span id="cart-total">&euro;0,00</span></div>
+        <p class="cart-note" data-i18n="cart.note">Verzendkosten worden bij het afrekenen berekend.</p>
+        <button class="form-submit" id="checkout-btn" data-i18n="cart.checkout">Afrekenen</button>
+      </div>
+    </aside>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="i18n.js?v=20"></script>
+  <script src="layout.js?v=20"></script>
+  <script src="shop.js?v=20"></script>
+</body>
+</html>

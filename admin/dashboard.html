@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css?v=18" />
+  <link rel="stylesheet" href="/styles.css?v=20" />
   <style>
     body { background: var(--black); color: var(--white); font-family: 'Space Grotesk', sans-serif; }
     .dash-top { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem clamp(1.5rem,5vw,3rem); border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(8,8,8,.9); backdrop-filter: blur(12px); z-index: 10; }
@@ -37,6 +37,23 @@
     .del { border: 1px solid var(--border); background: transparent; color: var(--muted); border-radius: 6px; width: 32px; height: 32px; cursor: pointer; transition: border-color .2s, color .2s; }
     .del:hover { border-color: var(--red); color: var(--red); }
     .empty { font-family: 'Inter'; color: var(--muted); padding: 2rem; text-align: center; }
+    .dash-tabs { display: flex; gap: .5rem; max-width: 1100px; margin: 1.4rem auto 0; padding: 0 clamp(1.5rem,4vw,3rem); }
+    .dash-tab { font-family: 'Space Grotesk'; font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: .55rem 1.1rem; border: 1px solid var(--border); background: transparent; color: var(--muted); border-radius: 6px; cursor: pointer; transition: border-color .2s, color .2s, background .2s; }
+    .dash-tab.active { background: var(--red); border-color: var(--red); color: #fff; }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+    .order-row { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin-bottom: .8rem; }
+    .order-head { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .order-head .oid { font-weight: 600; }
+    .order-head .ostatus { font-size: .58rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: .15rem .5rem; border-radius: 3px; }
+    .ostatus.paid { background: rgba(225,150,0,.18); color: #ffc074; }
+    .ostatus.fulfilled { background: rgba(26,110,26,.2); color: #9be29b; }
+    .order-meta { font-family: 'Inter'; font-size: .78rem; color: var(--muted); margin-top: .35rem; line-height: 1.5; }
+    .order-actions { display: flex; gap: .5rem; margin-top: .7rem; flex-wrap: wrap; }
+    .order-actions input { flex: 1; min-width: 140px; }
+    .order-actions button { white-space: nowrap; }
+    .mini { font-family: 'Space Grotesk'; font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: .5rem .8rem; border: 1px solid var(--border); background: transparent; color: var(--light); border-radius: 6px; cursor: pointer; }
+    .mini:hover { border-color: var(--red); color: var(--red); }
   </style>
 </head>
 <body>
@@ -48,6 +65,13 @@
     </div>
   </div>
 
+  <div class="dash-tabs">
+    <button class="dash-tab active" data-tab="werk">Werk</button>
+    <button class="dash-tab" data-tab="shop">Shop</button>
+    <button class="dash-tab" data-tab="orders">Bestellingen</button>
+  </div>
+
+  <div class="tab-pane active" id="tab-werk">
   <div class="dash-wrap">
     <div class="panel">
       <h2>Werk toevoegen</h2>
@@ -93,6 +117,73 @@
       <h2>Jouw werk</h2>
       <div class="works-list" id="list"><div class="empty">Laden...</div></div>
     </div>
+  </div>
+  </div>
+
+  <div class="tab-pane" id="tab-shop">
+  <div class="dash-wrap">
+    <div class="panel">
+      <h2>Product toevoegen</h2>
+      <div class="msg" id="pmsg"></div>
+      <form id="product-form">
+        <div class="form-group">
+          <label for="p-name">Naam</label>
+          <input id="p-name" name="name" type="text" placeholder="Bijv. Mindlock Beat Pack Vol. 1" required />
+        </div>
+        <div class="form-group">
+          <label for="p-subtitle">Ondertitel</label>
+          <input id="p-subtitle" name="subtitle" type="text" placeholder="Bijv. 15 beats" />
+        </div>
+        <div class="form-group">
+          <label for="p-type">Type</label>
+          <select id="p-type" name="type">
+            <option value="digital">Digitaal (download)</option>
+            <option value="physical">Merch (verzenden)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="p-price">Prijs (euro)</label>
+          <input id="p-price" name="price" type="text" placeholder="29,00" required />
+        </div>
+        <div class="form-group">
+          <label for="p-image">Productfoto</label>
+          <input id="p-image" name="image" type="file" accept="image/*" />
+        </div>
+        <div class="form-group" id="grp-digital">
+          <label for="p-digital">Downloadbestand (beat/zip/audio)</label>
+          <input id="p-digital" name="digital_file" type="file" accept="audio/*,application/zip,application/octet-stream,video/*" />
+          <p class="dash-note">Wordt veilig opgeslagen, alleen per e-mail na betaling te downloaden. Max 200 MB.</p>
+        </div>
+        <div class="form-group" id="grp-stock" style="display:none">
+          <label for="p-stock">Voorraad (leeg = onbeperkt)</label>
+          <input id="p-stock" name="stock" type="number" min="0" placeholder="10" />
+        </div>
+        <div class="form-group" id="grp-ship" style="display:none">
+          <label for="p-ship">Verzendkosten (euro)</label>
+          <input id="p-ship" name="shipping" type="text" placeholder="4,95" />
+        </div>
+        <div class="form-group">
+          <label for="p-badge">Badge (optioneel)</label>
+          <input id="p-badge" name="badge" type="text" placeholder="Nieuw / Limited" />
+        </div>
+        <button type="submit" class="form-submit">Product toevoegen</button>
+      </form>
+    </div>
+    <div class="panel">
+      <h2>Producten</h2>
+      <div class="works-list" id="plist"><div class="empty">Laden...</div></div>
+    </div>
+  </div>
+  </div>
+
+  <div class="tab-pane" id="tab-orders">
+  <div class="dash-wrap" style="grid-template-columns:1fr">
+    <div class="panel">
+      <h2>Bestellingen</h2>
+      <div class="msg" id="omsg"></div>
+      <div id="olist"><div class="empty">Laden...</div></div>
+    </div>
+  </div>
   </div>
 
   <script>
@@ -147,6 +238,112 @@
       await fetch('/api/logout', { method: 'POST' });
       window.location.href = '/login.html';
     });
+
+    /* ---- tabs ---- */
+    var loadedShop = false, loadedOrders = false;
+    document.querySelectorAll('.dash-tab').forEach(function (t) {
+      t.addEventListener('click', function () {
+        document.querySelectorAll('.dash-tab').forEach(function (x) { x.classList.remove('active'); });
+        document.querySelectorAll('.tab-pane').forEach(function (x) { x.classList.remove('active'); });
+        t.classList.add('active');
+        document.getElementById('tab-' + t.dataset.tab).classList.add('active');
+        if (t.dataset.tab === 'shop' && !loadedShop) { loadProducts(); loadedShop = true; }
+        if (t.dataset.tab === 'orders' && !loadedOrders) { loadOrders(); loadedOrders = true; }
+      });
+    });
+
+    /* ---- shop: type toont juiste velden ---- */
+    var pmsg = document.getElementById('pmsg');
+    function showPMsg(t, ok) { pmsg.textContent = t; pmsg.className = 'msg ' + (ok ? 'ok' : 'err'); setTimeout(function(){ pmsg.className = 'msg'; }, 4000); }
+    var pType = document.getElementById('p-type');
+    function syncType() {
+      var dig = pType.value === 'digital';
+      document.getElementById('grp-digital').style.display = dig ? '' : 'none';
+      document.getElementById('grp-stock').style.display = dig ? 'none' : '';
+      document.getElementById('grp-ship').style.display = dig ? 'none' : '';
+    }
+    pType.addEventListener('change', syncType); syncType();
+
+    var euro = function (c) { return '€' + (c/100).toFixed(2).replace('.', ','); };
+
+    async function loadProducts() {
+      var r = await fetch('/api/admin/products');
+      if (r.status === 401) { window.location.href = '/login.html'; return; }
+      var rows = await r.json();
+      var list = document.getElementById('plist');
+      if (!rows.length) { list.innerHTML = '<div class="empty">Nog geen producten.</div>'; return; }
+      list.innerHTML = rows.map(function (p) {
+        var thumb = p.image
+          ? '<div class="thumb" style="background-image:url(/uploads/' + p.image + ')"></div>'
+          : '<div class="thumb">' + (p.type === 'digital' ? 'DIG' : 'MERCH') + '</div>';
+        return '<div class="work-row">' + thumb +
+          '<div class="meta"><div class="t">' + esc(p.name) + (p.active ? '' : ' <span class="badge">inactief</span>') + '</div>' +
+          '<div class="s"><span class="badge">' + (p.type === 'digital' ? 'Digitaal' : 'Merch') + '</span>' + euro(p.price_cents) +
+          (p.type === 'physical' ? ' · voorraad: ' + (p.stock == null ? '∞' : p.stock) : '') +
+          (p.digital_file ? ' · bestand ✓' : '') + '</div></div>' +
+          '<button class="del" data-pid="' + p.id + '" title="Verwijderen">✕</button></div>';
+      }).join('');
+      list.querySelectorAll('.del').forEach(function (b) {
+        b.addEventListener('click', async function () {
+          if (!confirm('Dit product verwijderen?')) return;
+          var rr = await fetch('/api/admin/products/' + b.dataset.pid, { method: 'DELETE' });
+          if (rr.ok) loadProducts(); else showPMsg('Verwijderen mislukt.', false);
+        });
+      });
+    }
+
+    document.getElementById('product-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var btn = e.target.querySelector('.form-submit'); btn.textContent = 'Bezig...';
+      try {
+        var r = await fetch('/api/admin/products', { method: 'POST', body: new FormData(e.target) });
+        var data = await r.json();
+        if (r.ok && data.ok) { e.target.reset(); syncType(); showPMsg('Product toegevoegd.', true); loadProducts(); }
+        else showPMsg(data.error || 'Toevoegen mislukt.', false);
+      } catch (_) { showPMsg('Er ging iets mis.', false); }
+      btn.textContent = 'Product toevoegen';
+    });
+
+    /* ---- orders ---- */
+    var omsg = document.getElementById('omsg');
+    function showOMsg(t, ok) { omsg.textContent = t; omsg.className = 'msg ' + (ok ? 'ok' : 'err'); setTimeout(function(){ omsg.className = 'msg'; }, 4000); }
+    async function loadOrders() {
+      var r = await fetch('/api/admin/orders');
+      if (r.status === 401) { window.location.href = '/login.html'; return; }
+      var rows = await r.json();
+      var list = document.getElementById('olist');
+      if (!rows.length) { list.innerHTML = '<div class="empty">Nog geen bestellingen.</div>'; return; }
+      list.innerHTML = rows.map(function (o) {
+        var items = (o.items || []).map(function (i) { return i.quantity + 'x ' + esc(i.name); }).join(', ');
+        var ship = '';
+        if (o.shipping_json) { try { var s = JSON.parse(o.shipping_json); var a = s.address || {}; ship = esc([s.name, a.line1, a.postal_code, a.city, a.country].filter(Boolean).join(', ')); } catch (e) {} }
+        var emailWarn = o.email_status === 'failed' ? ' <span class="badge">e-mail mislukt</span>' : '';
+        return '<div class="order-row"><div class="order-head">' +
+          '<span class="oid">#' + o.id + ' · ' + euro(o.amount_total_cents) + '</span>' +
+          '<span class="ostatus ' + o.status + '">' + o.status + '</span></div>' +
+          '<div class="order-meta">' + esc(o.email || '') + emailWarn + '<br>' + items +
+          (ship ? '<br>Verzenden naar: ' + ship : '') +
+          (o.tracking ? '<br>Track &amp; trace: ' + esc(o.tracking) : '') + '</div>' +
+          '<div class="order-actions">' +
+          (o.has_physical ? '<input type="text" placeholder="Track & trace code" data-track="' + o.id + '"><button class="mini" data-ship="' + o.id + '">Markeer verzonden</button>' : '') +
+          (o.has_digital ? '<button class="mini" data-resend="' + o.id + '">E-mail opnieuw</button>' : '') +
+          '</div></div>';
+      }).join('');
+      list.querySelectorAll('[data-ship]').forEach(function (b) {
+        b.addEventListener('click', async function () {
+          var tr = list.querySelector('[data-track="' + b.dataset.ship + '"]');
+          var rr = await fetch('/api/admin/orders/' + b.dataset.ship, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ fulfilled: true, tracking: tr ? tr.value : '', notify: true }) });
+          if (rr.ok) { showOMsg('Gemarkeerd als verzonden.', true); loadOrders(); } else showOMsg('Mislukt.', false);
+        });
+      });
+      list.querySelectorAll('[data-resend]').forEach(function (b) {
+        b.addEventListener('click', async function () {
+          var rr = await fetch('/api/admin/orders/' + b.dataset.resend, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'resend' }) });
+          var d = await rr.json();
+          showOMsg(d.ok ? 'E-mail opnieuw verstuurd.' : 'E-mail mislukt.', !!d.ok); loadOrders();
+        });
+      });
+    }
 
     load();
   </script>

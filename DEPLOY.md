@@ -74,12 +74,63 @@ wachtwoord. Je komt op `/dashboard`. Daar upload je werk (foto/video of een
 YouTube-link), kiest de discipline, en het verschijnt meteen op de Werk-pagina.
 Vink "Uitlichten" aan om een item groot te tonen.
 
+## 8. Shop met Stripe (testmodus eerst)
+
+De shop staat op `/shop`. Producten beheer je in het dashboard onder de
+tab **Shop**; bestellingen zie je onder **Bestellingen**. Prijzen staan
+server-side, betaling loopt via Stripe Checkout, digitale downloads gaan
+via verlopende e-maillinks (Resend).
+
+### 8a. Stripe (zet de dashboard-toggle op TEST mode)
+1. Developers → API keys: kopieer **Secret key** (`sk_test_...`).
+2. Developers → Webhooks → Add endpoint:
+   - URL: `https://mindlockresidence.com/api/shop/webhook`
+   - Events: `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `charge.refunded`
+   - Kopieer de **Signing secret** (`whsec_...`).
+
+### 8b. Resend (voor de digitale downloadmails)
+1. Maak een API key (`re_...`).
+2. Verifieer het domein `mindlockresidence.com` (SPF/DKIM in mijndomein DNS),
+   anders komen mails niet aan. Test eerst met je eigen adres.
+
+### 8c. Extra env vars in Coolify (daarna redeploy)
+
+| Key | Waarde |
+|---|---|
+| `STRIPE_SECRET_KEY` | `sk_test_...` |
+| `STRIPE_WEBHOOK_SECRET` | `whsec_...` (van het endpoint hierboven) |
+| `RESEND_API_KEY` | `re_...` |
+| `SHOP_FROM_EMAIL` | `Mindlock Residence <shop@mindlockresidence.com>` |
+| `PUBLIC_BASE_URL` | `https://mindlockresidence.com` |
+| `SHOP_ALLOWED_SHIPPING_COUNTRIES` | `NL,BE,DE` (optioneel) |
+| `SHOP_SHIPPING_CENTS` | `595` (optioneel, vaste verzendkosten in centen) |
+| `DOWNLOAD_TOKEN_TTL_HOURS` | `72` (optioneel) |
+| `DOWNLOAD_MAX_USES` | `3` (optioneel) |
+
+Zonder `STRIPE_SECRET_KEY` blijft de site gewoon werken; de shop staat
+dan simpelweg uit (afrekenen geeft een nette melding). Houd **één replica**
+(node:sqlite is single-writer).
+
+### 8d. Testen met een testkaart
+Op `/shop`: leg een product in de wagen, reken af, en gebruik kaart
+`4242 4242 4242 4242`, willekeurige toekomstige datum + CVC. Na betaling:
+- digitaal → je krijgt een e-mail met downloadlink (max 3x, 72u geldig);
+- fysiek → Stripe vraagt adres + verzendkosten; de bestelling komt in het
+  dashboard onder Bestellingen, waar je 'm als verzonden markeert met
+  track & trace.
+
+### 8e. Live gaan (later)
+Zet Stripe op live, maak een NIEUW live-webhook-endpoint (nieuwe `whsec_`),
+en wissel `sk_live_...` + de live `whsec_...` samen in Coolify. Redeploy.
+
 ## Lokaal draaien (testen)
 
 ```
 npm install
 ADMIN_PASSWORD='JOUW-WACHTWOORD' SESSION_SECRET=dev npm start
 # open http://localhost:3000
+# shop werkt lokaal pas met STRIPE_SECRET_KEY + STRIPE_WEBHOOK_SECRET
+# (gebruik `stripe listen --forward-to localhost:3000/api/shop/webhook`)
 ```
 
 ## Notities
