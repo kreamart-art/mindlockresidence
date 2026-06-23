@@ -1,0 +1,20 @@
+{
+  "name": "mindlockresidence",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Mindlockresidence website + owner dashboard",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "hash": "node scripts/hash.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "multer": "^1.4.5-lts.1"
+  }
+}

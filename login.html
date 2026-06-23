@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inloggen — Mindlockresidence</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=18" />
+  <style>
+    .auth-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; position: relative; z-index: 2; }
+    .auth-card { width: 100%; max-width: 380px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 2.4rem; }
+    .auth-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; font-size: 1.1rem; text-align: center; margin-bottom: .4rem; }
+    .auth-sub { text-align: center; color: var(--muted); font-family: 'Inter'; font-size: .8rem; margin-bottom: 1.8rem; }
+    .auth-card .form-group { margin-bottom: 1rem; }
+    .auth-err { display: none; background: rgba(225,6,0,.12); border: 1px solid var(--red-dim); color: #ff8a80; font-family: 'Inter'; font-size: .8rem; padding: .6rem .8rem; border-radius: 6px; margin-bottom: 1rem; }
+    .auth-err.show { display: block; }
+    .auth-back { display: block; text-align: center; margin-top: 1.2rem; font-family: 'Inter'; font-size: .78rem; color: var(--muted); text-decoration: none; }
+    .auth-back:hover { color: var(--red); }
+  </style>
+</head>
+<body>
+  <div class="auth-wrap">
+    <form class="auth-card" id="login-form" novalidate>
+      <div class="auth-logo">Mindlockresidence</div>
+      <div class="auth-sub">Eigenaar-dashboard</div>
+      <div class="auth-err" id="err"></div>
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" autocomplete="username" placeholder="jouw@email.com" required />
+      </div>
+      <div class="form-group">
+        <label for="password">Wachtwoord</label>
+        <input id="password" type="password" autocomplete="current-password" placeholder="••••••••" required />
+      </div>
+      <button type="submit" class="form-submit">Inloggen</button>
+      <a href="index.html" class="auth-back">Terug naar de site</a>
+    </form>
+  </div>
+  <script>
+    var form = document.getElementById('login-form');
+    var err = document.getElementById('err');
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      err.classList.remove('show');
+      var btn = form.querySelector('.form-submit');
+      btn.textContent = 'Bezig...';
+      try {
+        var r = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value
+          })
+        });
+        var data = await r.json();
+        if (r.ok && data.ok) { window.location.href = '/dashboard'; return; }
+        err.textContent = data.error || 'Inloggen mislukt.';
+        err.classList.add('show');
+      } catch (_) {
+        err.textContent = 'Er ging iets mis. Probeer opnieuw.';
+        err.classList.add('show');
+      }
+      btn.textContent = 'Inloggen';
+    });
+  </script>
+</body>
+</html>

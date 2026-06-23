@@ -55,6 +55,7 @@
         '<ul class="nav-links">' + navList(false) + '</ul>' +
         '<div class="nav-right">' +
           langToggle() +
+          '<a href="dashboard" class="nav-dash" aria-label="Dashboard" title="Dashboard"><svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg></a>' +
           '<a href="contact.html" class="nav-cta" data-i18n="nav.boek">Boek nu</a>' +
           '<button id="menu-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>' +
         '</div>' +
@@ -384,11 +385,54 @@
       });
     }
 
+    // dynamisch werk uit het dashboard inladen (Werk-pagina)
+    loadDynamicWork();
+
     // vertaal de nieuw ingevoegde content
     if (window.MLRI18N) window.MLRI18N.apply(window.MLRI18N.getLang());
 
     onScroll();
   }
+
+  var CATLABEL = { muziek: 'werk.f.muziek', film: 'werk.f.film', foto: 'werk.f.foto', design: 'werk.f.design', studio: 'werk.f.studio', workshop: 'werk.f.workshop' };
+  function loadDynamicWork() {
+    var grid = document.querySelector('.werk-grid');
+    if (!grid || grid.getAttribute('data-dyn') === '1') return;
+    grid.setAttribute('data-dyn', '1');
+    fetch('api/works').then(function (r) { return r.ok ? r.json() : []; }).then(function (rows) {
+      if (!rows || !rows.length) return;
+      var frag = document.createDocumentFragment();
+      rows.forEach(function (w) {
+        var art = document.createElement('article');
+        art.className = 'work-card' + (w.featured ? ' large' : '') + (w.mediaType === 'youtube' || w.mediaType === 'video' ? ' has-video' : '');
+        art.setAttribute('data-cat', w.category);
+        var bg = '', playBtn = '';
+        if (w.mediaType === 'youtube') {
+          bg = 'https://i.ytimg.com/vi/' + w.youtubeId + '/hqdefault.jpg';
+          art.setAttribute('data-yt', w.youtubeId);
+          art.setAttribute('role', 'button'); art.setAttribute('tabindex', '0');
+          playBtn = '<span class="work-play"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>';
+        } else if (w.mediaType === 'video') {
+          art.setAttribute('data-video', w.url); art.setAttribute('data-portrait', '');
+          art.setAttribute('role', 'button'); art.setAttribute('tabindex', '0');
+          playBtn = '<span class="work-play"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>';
+        } else {
+          bg = w.url;
+        }
+        var catKey = CATLABEL[w.category] || '';
+        art.innerHTML =
+          '<div class="work-media has-photo" data-label=""' + (bg ? ' style="background-image:url(\'' + bg + '\')"' : '') + '>' +
+            '<span class="work-cat" data-i18n="' + catKey + '"></span>' + playBtn +
+          '</div>' +
+          '<div class="work-info"><h3 class="work-title">' + escapeHtml(w.title) + '</h3>' +
+          '<p class="work-meta">' + escapeHtml(w.subtitle || '') + '</p></div>';
+        frag.appendChild(art);
+      });
+      grid.insertBefore(frag, grid.firstChild);
+      if (window.MLRI18N) window.MLRI18N.apply(window.MLRI18N.getLang());
+    }).catch(function () {});
+  }
+  function escapeHtml(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   /* ---- INTRO / ENTRANCE ---- */
   function revealSite() { document.body.classList.remove('loading'); document.body.classList.add('loaded'); }

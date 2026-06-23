@@ -490,6 +490,10 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
 /* ── NAV (text wordmark + right cluster) ── */
 .nav-logo-text { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.3rem; letter-spacing: .04em; text-transform: uppercase; color: var(--white); text-decoration: none; white-space: nowrap; }
 .nav-right { display: flex; align-items: center; gap: 1rem; }
+.nav-dash { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid var(--border); border-radius: 7px; color: var(--light); transition: border-color .25s, color .25s, background .25s; }
+.nav-dash svg { width: 17px; height: 17px; }
+.nav-dash:hover { border-color: var(--red); color: var(--red); background: rgba(225,6,0,.08); }
+@media (hover: hover) and (pointer: fine) { .nav-dash { cursor: none; } }
 #menu-toggle { display: flex; }            /* visible on desktop too, per comp */
 nav .nav-links a.active { color: var(--white); }
 nav .nav-links a.active::after { transform: scaleX(1); }

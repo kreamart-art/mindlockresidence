@@ -1,0 +1,7 @@
+node_modules
+data
+.git
+.DS_Store
+*.log
+index-v1.html
+script.js
