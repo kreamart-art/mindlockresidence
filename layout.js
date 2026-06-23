@@ -164,38 +164,52 @@
     document.body.appendChild(lb);
     var frame = lb.querySelector('.vlb-frame');
 
-    function open(id) {
-      if (!id) return;
+    function openYouTube(id) {
       frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
         '?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="YouTube video" ' +
         'frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
         'allowfullscreen></iframe>';
+      show();
+    }
+    function openFile(src, portrait) {
+      frame.innerHTML = '<video src="' + src + '" controls autoplay playsinline ' +
+        'style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000"></video>';
+      lb.classList.toggle('vlb-portrait', !!portrait);
+      show();
+    }
+    function show() {
       lb.classList.add('open');
       lb.setAttribute('aria-hidden', 'false');
       document.body.classList.add('vlb-lock');
     }
     function close() {
       lb.classList.remove('open');
+      lb.classList.remove('vlb-portrait');
       lb.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('vlb-lock');
       frame.innerHTML = ''; // stop playback
+    }
+    function openFrom(card) {
+      if (card.getAttribute('data-yt')) { openYouTube(card.getAttribute('data-yt')); return true; }
+      if (card.getAttribute('data-video')) { openFile(card.getAttribute('data-video'), card.hasAttribute('data-portrait')); return true; }
+      return false;
     }
     lb.querySelector('.vlb-close').addEventListener('click', close);
     lb.querySelector('.vlb-backdrop').addEventListener('click', close);
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
 
     document.addEventListener('click', function (e) {
-      var card = e.target.closest && e.target.closest('[data-yt]');
+      var card = e.target.closest && e.target.closest('[data-yt],[data-video]');
       if (!card) return;
       e.preventDefault();
-      open(card.getAttribute('data-yt'));
+      openFrom(card);
     });
     document.addEventListener('keydown', function (e) {
       if (e.key !== 'Enter' && e.key !== ' ') return;
-      var card = e.target.closest && e.target.closest('[data-yt]');
+      var card = e.target.closest && e.target.closest('[data-yt],[data-video]');
       if (!card) return;
       e.preventDefault();
-      open(card.getAttribute('data-yt'));
+      openFrom(card);
     });
   })();
 
