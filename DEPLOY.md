@@ -33,7 +33,7 @@ een herstart of redeploy overleven.
 | `ADMIN_PASSWORD_HASH` | de `scrypt$...`-regel uit stap 1.2 |
 | `SESSION_SECRET` | de random string uit stap 1.3 |
 | `NODE_ENV` | `production` |
-| `DATA_DIR` | `/app/data` |
+| `DATA_DIR` | `/data` |
 
 Gebruik **ADMIN_PASSWORD_HASH**, niet het platte wachtwoord. (Er is een
 fallback `ADMIN_PASSWORD` voor lokaal testen, maar zet die niet in productie.)
@@ -42,14 +42,20 @@ fallback `ADMIN_PASSWORD` voor lokaal testen, maar zet die niet in productie.)
 
 Coolify → Storage → **Add volume**:
 - Source: een naam, bijv. `mlr-data`
-- Destination (container path): `/app/data`
+- Destination (container path): `/data`
 
 Zonder dit verdwijnen uploads en de database bij elke redeploy.
+(De data staat bewust op `/data`, buiten de app-map, zodat de database
+nooit per ongeluk via de website gedownload kan worden.)
 
 ## 5. Deploy
 
 Klik **Deploy**. Coolify bouwt de Docker-image en start de app.
 Daarna bereikbaar op de tijdelijke Coolify-URL.
+
+> Let op: **inloggen werkt alleen via HTTPS.** De sessie-cookie is `Secure`
+> in productie, dus test login op de `https://`-URL (Coolify/Traefik serveert
+> standaard via HTTPS), niet op een kale `http://`-URL.
 
 ## 6. Domein koppelen (mijndomein.nl)
 

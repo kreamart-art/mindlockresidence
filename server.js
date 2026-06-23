@@ -14,8 +14,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.set('trust proxy', 1); // achter Coolify/Traefik reverse proxy
+app.disable('x-powered-by');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// SESSION_SECRET is verplicht in productie (anders loggen sessies uit bij elke redeploy).
+if (process.env.NODE_ENV === 'production' && !process.env.SESSION_SECRET) {
+  throw new Error('SESSION_SECRET is verplicht in productie. Zet de variabele in de Coolify env.');
+}
 
 app.use(session({
   name: 'mlr.sid',
@@ -103,25 +109,34 @@ app.get('/api/admin/works', requireAuth, (req, res) => {
 });
 
 app.post('/api/admin/works', requireAuth, upload.single('file'), (req, res) => {
+  // Ruimt een geüpload bestand op als we het niet (meer) gebruiken.
+  const dropFile = () => { if (req.file) { try { unlinkSync(req.file.path); } catch {} } };
   const { title, subtitle = '', category, youtube_id = '', featured } = req.body || {};
   if (!title || !category || !CATEGORIES.includes(category)) {
+    dropFile();
     return res.status(400).json({ error: 'Titel en geldige categorie zijn verplicht.' });
   }
   let media_type = 'image', file = '', ytid = '';
   if (youtube_id.trim()) {
     media_type = 'youtube';
     ytid = extractYouTubeId(youtube_id.trim());
-    if (!ytid) return res.status(400).json({ error: 'Ongeldige YouTube-link of id.' });
+    if (!ytid) { dropFile(); return res.status(400).json({ error: 'Ongeldige YouTube-link of id.' }); }
+    dropFile(); // YouTube wint: gooi een evt. meegestuurd bestand weg
   } else if (req.file) {
     file = req.file.filename;
     media_type = req.file.mimetype.startsWith('video/') ? 'video' : 'image';
   } else {
     return res.status(400).json({ error: 'Upload een bestand of geef een YouTube-link.' });
   }
-  const info = db.prepare(
-    'INSERT INTO works (title, subtitle, category, media_type, file, youtube_id, featured) VALUES (?,?,?,?,?,?,?)'
-  ).run(title.trim(), subtitle.trim(), category, media_type, file, ytid, featured ? 1 : 0);
-  res.json({ ok: true, id: info.lastInsertRowid });
+  try {
+    const info = db.prepare(
+      'INSERT INTO works (title, subtitle, category, media_type, file, youtube_id, featured) VALUES (?,?,?,?,?,?,?)'
+    ).run(title.trim(), subtitle.trim(), category, media_type, file, ytid, featured ? 1 : 0);
+    res.json({ ok: true, id: info.lastInsertRowid });
+  } catch (e) {
+    dropFile();
+    res.status(500).json({ error: 'Opslaan mislukt.' });
+  }
 });
 
 app.delete('/api/admin/works/:id', requireAuth, (req, res) => {
@@ -144,7 +159,14 @@ app.get(['/dashboard', '/dashboard.html'], requireAuth, (req, res) => {
 });
 
 /* ---- STATISCHE SITE ---- */
+// Bescherm server-interne paden tegen statische uitlevering (db, code, config).
+const BLOCKED = /^\/(?:data|lib|scripts|node_modules|admin)(?:\/|$)|^\/(?:server\.js|package(?:-lock)?\.json|Dockerfile|DEPLOY\.md|\.dockerignore|\.gitignore|\.env)$/i;
+app.use((req, res, next) => {
+  if (BLOCKED.test(req.path)) return res.status(404).end();
+  next();
+});
 app.use(express.static(__dirname, {
+  dotfiles: 'ignore',
   extensions: ['html'],
   setHeaders: (res, p) => {
     if (/\.(?:css|js|png|jpe?g|webp|mp3|mp4|ico)$/.test(p)) {
