@@ -1,4 +1,4 @@
-# Mindlockresidence — deploy op Hetzner via Coolify
+# Mindlockresidence - deploy op Hetzner via Coolify
 
 De site is nu een Node-app (Express). Hij serveert de statische site én het
 eigenaar-dashboard met login en uploads. Data (database + geüploade bestanden)

@@ -1,5 +1,5 @@
 /* ============================================================
-   Mindlockresidence — gedeelde layout + interacties
+   Mindlockresidence, gedeelde layout + interacties
    Injecteert nav + footer op elke pagina (één bron van waarheid),
    regelt taalwissel, actieve nav, cursor, menu, reveal, filters,
    formulieren en de intro-animatie (alleen op de home-pagina).
@@ -113,14 +113,14 @@
           '</aside>' +
         '</div>' +
         '<div class="footer-bottom">' +
-          '<span data-i18n="footer.bottom">&copy; 2026 Mindlock Residence — Amsterdam.</span>' +
+          '<span data-i18n="footer.bottom">&copy; 2026 Mindlock Residence, Amsterdam.</span>' +
           '<div class="footer-legal">' +
             '<a href="#" data-i18n="footer.privacy">Privacy</a>' +
             '<a href="#" data-i18n="footer.terms">Voorwaarden</a>' +
           '</div>' +
         '</div>' +
         '<div class="footer-credit-bar">' +
-          '<a href="https://www.artnomad.nl" target="_blank" rel="noopener" class="footer-credit" aria-label="Made by Kream Art — Artnomad"><span class="footer-credit-by">Made by</span><img src="assets/ka-logo.png" alt="Kream Art" class="footer-credit-logo"></a>' +
+          '<a href="https://www.artnomad.nl" target="_blank" rel="noopener" class="footer-credit" aria-label="Made by Kream Art, Artnomad"><span class="footer-credit-by">Made by</span><img src="assets/ka-logo.png" alt="Kream Art" class="footer-credit-logo"></a>' +
         '</div>' +
       '</footer>';
   }
@@ -168,7 +168,7 @@
       '<span class="beat-ic beat-ic-pause"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></span>' +
       '<span class="beat-eq"><i></i><i></i><i></i><i></i></span>' +
       '<span class="beat-label">Beat</span>';
-    var audio = new Audio('assets/beat-loop.mp3');
+    var audio = new Audio('assets/beat-loop.mp3?v=2');
     audio.loop = true;
     audio.preload = 'auto';
     audio.volume = 0.55;
