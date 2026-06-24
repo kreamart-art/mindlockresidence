@@ -56,7 +56,6 @@
         '<ul class="nav-links">' + navList(false) + '</ul>' +
         '<div class="nav-right">' +
           langToggle() +
-          '<a href="dashboard" class="nav-dash" aria-label="Dashboard" title="Dashboard"><svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg></a>' +
           '<a href="contact.html" class="nav-cta" data-i18n="nav.boek">Boek nu</a>' +
           '<button id="menu-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>' +
         '</div>' +
@@ -117,6 +116,7 @@
           '<div class="footer-legal">' +
             '<a href="#" data-i18n="footer.privacy">Privacy</a>' +
             '<a href="#" data-i18n="footer.terms">Voorwaarden</a>' +
+            '<a href="dashboard" class="footer-login" data-i18n="footer.login">Dashboard</a>' +
           '</div>' +
         '</div>' +
         '<div class="footer-credit-bar">' +

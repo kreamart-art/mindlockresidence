@@ -241,6 +241,7 @@
       'footer.bottom': '© 2026 Mindlock Residence, Amsterdam.',
       'footer.privacy': 'Privacy',
       'footer.terms': 'Voorwaarden',
+      'footer.login': 'Dashboard',
       'footer.credit': 'Made by Kream Art',
 
       'home.over.tag': 'Over ons',
@@ -498,6 +499,7 @@
       'footer.bottom': '© 2026 Mindlock Residence, Amsterdam.',
       'footer.privacy': 'Privacy',
       'footer.terms': 'Terms',
+      'footer.login': 'Dashboard',
       'footer.credit': 'Made by Kream Art',
 
       'home.over.tag': 'About us',
