@@ -11,7 +11,7 @@ import db, { UPLOAD_DIR } from './lib/db.js';
 import { checkLogin, requireAuth, ADMIN_EMAIL } from './lib/auth.js';
 import * as shop from './lib/shop.js';
 import { SECURE_DIR } from './lib/shop.js';
-import { sendDigitalDelivery, sendPhysicalConfirmation, sendTracking } from './lib/mail.js';
+import { sendDigitalDelivery, sendPhysicalConfirmation, sendTracking, sendContactMessage } from './lib/mail.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -208,6 +208,57 @@ const shopUpload = multer({
 const euroToCents = (v) => Math.round(parseFloat(String(v).replace(',', '.')) * 100);
 
 /* ---- publieke shop API ---- */
+/* ---------- CONTACTFORMULIER ----------
+   Stuurt de aanvraag als mail naar de eigenaar. Reply-to = de afzender.
+   Beschermd met een honeypot (bots vullen 'website' in) en een IP-limiet. */
+const contactHits = new Map(); // ip -> [timestamps]
+const CONTACT_WINDOW_MS = 60 * 60 * 1000; // 1 uur
+const CONTACT_MAX = 5;
+
+function contactRateLimited(ip) {
+  const now = Date.now();
+  const hits = (contactHits.get(ip) || []).filter(t => now - t < CONTACT_WINDOW_MS);
+  if (hits.length >= CONTACT_MAX) { contactHits.set(ip, hits); return true; }
+  hits.push(now);
+  contactHits.set(ip, hits);
+  if (contactHits.size > 5000) { // simpele opruiming
+    for (const [k, v] of contactHits) if (!v.some(t => now - t < CONTACT_WINDOW_MS)) contactHits.delete(k);
+  }
+  return false;
+}
+
+app.post('/api/contact', async (req, res) => {
+  const b = req.body || {};
+  // Honeypot: onzichtbaar veld. Ingevuld betekent bot. Doe alsof het lukte.
+  if (b.website) return res.json({ ok: true });
+
+  const name = String(b.name || '').trim();
+  const email = String(b.email || '').trim();
+  const type = String(b.type || '').trim().slice(0, 80);
+  const message = String(b.message || '').trim();
+
+  if (!name || !email || !message) return res.status(400).json({ error: 'Vul je naam, e-mail en bericht in.' });
+  if (name.length > 120 || email.length > 200 || message.length > 5000) return res.status(400).json({ error: 'Invoer is te lang.' });
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return res.status(400).json({ error: 'Dit e-mailadres klopt niet.' });
+  // Header-injectie via reply-to voorkomen
+  if (/[\r\n]/.test(email) || /[\r\n]/.test(name)) return res.status(400).json({ error: 'Ongeldige invoer.' });
+
+  if (contactRateLimited(req.ip)) return res.status(429).json({ error: 'Te veel aanvragen. Probeer het later opnieuw.' });
+
+  try {
+    const r = await sendContactMessage({ name, email, type, message });
+    if (!r || r.ok !== true) {
+      console.error('[contact] versturen mislukt');
+      return res.status(502).json({ error: 'Versturen lukte niet. Mail ons direct op Mindlockresidence@gmail.com.' });
+    }
+    console.log('[contact] aanvraag van', email, '(' + (type || 'geen type') + ')');
+    return res.json({ ok: true });
+  } catch (e) {
+    console.error('[contact] fout:', e.message);
+    return res.status(500).json({ error: 'Er ging iets mis. Probeer het later opnieuw.' });
+  }
+});
+
 app.get('/api/shop/products', (req, res) => {
   res.json(shop.getActiveProducts().map(shop.publicProduct));
 });

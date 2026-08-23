@@ -361,19 +361,66 @@
       });
     });
 
-    // formulier (front-end only)
+    // contactformulier: verstuurt echt naar /api/contact
     var form = document.getElementById('contact-form');
-    if (form) {
+    if (form && !form.__mlrBound) {
+      form.__mlrBound = 1;
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         var btn = form.querySelector('.form-submit');
         if (!form.checkValidity()) { form.reportValidity(); return; }
         var lang = (window.MLRI18N && window.MLRI18N.getLang()) || 'nl';
-        var original = btn.textContent;
-        btn.textContent = lang === 'en' ? 'Sent! ✓' : 'Verzonden! ✓';
-        btn.style.background = '#1a6e1a';
-        form.reset();
-        setTimeout(function () { btn.textContent = original; btn.style.background = ''; }, 3200);
+        var t = function (nl, en) { return lang === 'en' ? en : nl; };
+        var original = btn.getAttribute('data-label') || btn.textContent;
+        btn.setAttribute('data-label', original);
+
+        var note = form.querySelector('.form-note');
+        if (!note) {
+          note = document.createElement('p');
+          note.className = 'form-note';
+          form.appendChild(note);
+        }
+        function setNote(text, state) {
+          note.textContent = text;
+          note.className = 'form-note' + (state ? ' ' + state : '');
+        }
+
+        var typeSel = form.querySelector('#f-type');
+        var payload = {
+          name: (form.querySelector('#f-name') || {}).value || '',
+          email: (form.querySelector('#f-email') || {}).value || '',
+          type: typeSel && typeSel.selectedIndex > 0 ? typeSel.options[typeSel.selectedIndex].text : '',
+          message: (form.querySelector('#f-msg') || {}).value || '',
+          website: (form.querySelector('#f-website') || {}).value || ''
+        };
+
+        btn.disabled = true;
+        setNote(t('Bezig met versturen...', 'Sending...'), '');
+        btn.textContent = t('Versturen...', 'Sending...');
+
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(function (r) {
+          return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, d: d }; });
+        }).then(function (res) {
+          btn.disabled = false;
+          btn.textContent = original;
+          if (res.ok && res.d.ok) {
+            form.reset();
+            setNote(t('Verstuurd. We nemen snel contact met je op.',
+                      'Sent. We will get back to you soon.'), 'ok');
+          } else {
+            setNote(res.d.error || t('Versturen lukte niet. Mail ons op Mindlockresidence@gmail.com.',
+                                     'Sending failed. Email us at Mindlockresidence@gmail.com.'), 'err');
+          }
+        }).catch(function () {
+          btn.disabled = false;
+          btn.textContent = original;
+          setNote(t('Geen verbinding. Mail ons op Mindlockresidence@gmail.com.',
+                    'No connection. Email us at Mindlockresidence@gmail.com.'), 'err');
+        });
       });
     }
 

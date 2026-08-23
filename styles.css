@@ -858,3 +858,10 @@ body.vlb-lock { overflow: hidden; }
 @media (max-width: 560px) { .video-grid { grid-template-columns: 1fr; } .vlb-close { top: -2.6rem; } }
 @media (max-width: 900px) { .home-werk-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .home-werk-grid { grid-template-columns: 1fr; } }
+
+/* contactformulier: honeypot (onzichtbaar voor mensen, zichtbaar voor bots) */
+.form-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+/* statusmelding onder het formulier */
+.form-note { margin-top: .9rem; font-family: 'Inter', sans-serif; font-size: .82rem; line-height: 1.5; color: var(--muted); min-height: 1.2em; }
+.form-note.ok { color: #7ddb7d; }
+.form-note.err { color: #ff8a80; }
