@@ -13,7 +13,6 @@
   /* ---- ICONS ---- */
   var IG = '<svg fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>';
   var YT = '<svg fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>';
-  var TT = '<svg fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.07 8.07 0 004.74 1.52V6.76a4.85 4.85 0 01-.97-.07z"/></svg>';
   var BC = '<svg fill="currentColor" viewBox="0 0 24 24"><path d="M0 18.75l7.437-13.5H24l-7.437 13.5H0z"/></svg>';
   var arrow = '<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>';
 
@@ -153,8 +152,7 @@
   if (heroSocials && !heroSocials.children.length) {
     heroSocials.innerHTML =
       '<a href="https://instagram.com/mindlockresidence" target="_blank" rel="noopener" aria-label="Instagram">' + IG + '</a>' +
-      '<a href="#" aria-label="YouTube">' + YT + '</a>' +
-      '<a href="#" aria-label="TikTok">' + TT + '</a>' +
+      '<a href="https://www.youtube.com/@mindlockresidence" target="_blank" rel="noopener" aria-label="YouTube">' + YT + '</a>' +
       '<a href="https://mindlockresidence.bandcamp.com" target="_blank" rel="noopener" aria-label="Bandcamp">' + BC + '</a>';
   }
 
@@ -319,8 +317,7 @@
     if (heroSocials && !heroSocials.children.length) {
       heroSocials.innerHTML =
         '<a href="https://instagram.com/mindlockresidence" target="_blank" rel="noopener" aria-label="Instagram">' + IG + '</a>' +
-        '<a href="#" aria-label="YouTube">' + YT + '</a>' +
-        '<a href="#" aria-label="TikTok">' + TT + '</a>' +
+        '<a href="https://www.youtube.com/@mindlockresidence" target="_blank" rel="noopener" aria-label="YouTube">' + YT + '</a>' +
         '<a href="https://mindlockresidence.bandcamp.com" target="_blank" rel="noopener" aria-label="Bandcamp">' + BC + '</a>';
     }
 
